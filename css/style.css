@@ -1,0 +1,38 @@
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+/* ********************** */
+
+/* Palheta de cores */
+:root {
+    --dark-color: #000000;
+
+
+}
+
+/* **************** */
+
+
+/* Classes para uso geral */
+.container {
+    width: 1440px;
+    margin: auto;
+}
+
+/* *********************** */
+
+
+/* Header */
+header {
+    width: 100%;
+    height: 100px;
+
+    background-color: var(--dark-color);
+}
+
+/* ***************** */
