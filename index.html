@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM - Desvende  o Mundo!</title>
+
+    <!-- Importação de font externa GoogleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- // Importação de font externa GoogleFonts -->
+
+
     <!-- Imports CSS and JS -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/main.js" defer></script>
@@ -13,13 +21,13 @@
     <header>
         <div class="header container">
             <!-- Logo -->
-            <div>
-                <img src="./assets/img/logo 1.png" alt="logo">
+            <div class="logo">
+                <img src="./assets/img/icons/logo 1.png" alt="logo">
             </div>
             <!-- // Logo -->
 
             <!-- Navegação -->
-            <nav class="nav">
+            <nav>
                 <a href="#promocoes" class="nav-item">promoções</a>
                 <a href="#destaques" class="nav-item">destaques</a>
                 <a href="#moda" class="nav-item">moda</a>
@@ -28,25 +36,37 @@
             </nav>
             <!-- // Navegação -->
 
+            <!-- Line -->
+            <div class="line">
+                <img src="./assets/img/icons/line-header.png" alt="|">
+            </div>
+            <!-- // Line -->
+
             <!-- Pesquisa -->
             <div class="header-pesquisa">
                 <input type="text" name="" id="">
-                <img src="./assets/img/search 1.png" alt="search">
+
+                <div class="pesquisa-icon">
+                    <img src="./assets/img/icons/search 1.png" alt="search">
+                </div>
             </div>
             <!-- // Pesquisa -->
 
             <!-- Área de usuário -->
-            <div class="area-usuario-container">
+            <div class="header-usuario-sacola-container">
                 <!-- Usuário -->
                 <div class="usuario">
-                    <img src="./assets/img/user 1.png" alt="user-icon">
+                    <div>
+                        <img src="./assets/img/icons/user 1.png" alt="user-icon">
+
+                    </div>
                     <a href="#">Entrar</a>
                 </div>
                 <!-- // Usuário -->
 
                 <!-- Sacola de Compras -->
                 <div class="sacola-de-compras">
-                    <img src="./assets/img/bag-shop 1.png" alt="bag-shop-icon">
+                    <img src="./assets/img/icons/bag-shop 1.png" alt="bag-shop-icon">
                 </div>
                 <!-- // Sacola de Compras -->
             </div>
@@ -54,5 +74,16 @@
         </div>
     </header>
     <!-- // Cabeçalho -->
+
+    <!-- Slider -->
+    <section class="container-slider">
+        <!-- Controls -->
+        <div class="controls-">
+
+        </div>
+        <!-- // Controls -->
+        
+    </section>
+    <!-- Slider -->
 </body>
 </html>

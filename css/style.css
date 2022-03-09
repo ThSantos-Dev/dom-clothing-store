@@ -4,6 +4,7 @@
     padding: 0;
     border: 0;
     outline: none;
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
 /* ********************** */
@@ -11,28 +12,164 @@
 /* Palheta de cores */
 :root {
     --dark-color: #000000;
-
+    --white-color: #ffffff;
+    --search-font-color: #555555;
 
 }
 
 /* **************** */
 
 
-/* Classes para uso geral */
+/* Estilos para uso geral */
 .container {
     width: 1440px;
     margin: auto;
 }
+
+img {
+    width: inherit;
+    height: inherit;
+}
+
 
 /* *********************** */
 
 
 /* Header */
 header {
+    min-width: 1440px;
     width: 100%;
     height: 100px;
 
     background-color: var(--dark-color);
 }
 
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 30px;
+}
+
+
+/* Logo */
+.logo {
+    width: 142px;
+    height: 73px;
+
+    margin-right: 31px;
+    object-fit: cover;
+}
+
+/* // Logo */
+
+/* Navegação */
+header nav {
+    width: 692px;
+    height: 100px;
+    
+    padding: 35px 0;
+
+}
+
+.nav-item {
+    margin-right: 33px;
+
+    font-size: 1.5rem;
+    font-weight: 400px;
+
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: var(--white-color);
+}
+
+.nav-item:nth-last-child(1) {
+    margin-right:0;
+}
+/* // Navegação */
+
+/* Line */
+.line {
+    height: 30px;
+    width: 3px;
+    margin-right: 21px;
+}
+/* // Line */
+
+/* Pesquisa */
+.header-pesquisa {
+    width: 252px;
+    height: inherit;
+
+    padding: 7px 8px 7px 0;
+    margin-right: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border-radius: 20px;
+    background-color: var(--white-color)
+}
+
+.header-pesquisa input {
+    width: calc(213px - 20px);
+    padding: 0 10px;
+
+    color: var(--search-font-color);
+    font-size: 1.2rem;
+}
+
+.pesquisa-icon {
+    width: 25px;
+    height: 25px;
+}
+/* // Pesquisa */
+
+/* Área do usuário - usuario e sacola */
+.header-usuario-sacola-container {
+    width: 204px;
+    height: 50px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.usuario {
+    flex: 1;
+    display: flex;   
+    align-items: center;
+}
+
+
+.usuario div {
+
+    width: 50px;
+    height: 50px;
+
+    /* background-color: var(--white-color); */
+    
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.usuario a {
+    font-size: 1.125rem;
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.sacola-de-compras {
+    width: 50px;
+    height: 50px;
+}
+/* // Área do usuário - usuario e sacola */
 /* ***************** */
+
+/* Slider */
+
+/* ****************** */
