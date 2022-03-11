@@ -1,89 +1,885 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM - Desvende  o Mundo!</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - Desvende o Mundo!</title>
 
     <!-- Importação de font externa GoogleFonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <!-- // Importação de font externa GoogleFonts -->
 
-
     <!-- Imports CSS and JS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/carousel-product.js" defer></script>
+    <script src="js/slider.js" defer></script>
     <script src="js/main.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Cabeçalho -->
     <header>
-        <div class="header container">
-            <!-- Logo -->
-            <div class="logo">
-                <img src="./assets/img/icons/logo 1.png" alt="logo">
-            </div>
-            <!-- // Logo -->
-
-            <!-- Navegação -->
-            <nav>
-                <a href="#promocoes" class="nav-item">promoções</a>
-                <a href="#destaques" class="nav-item">destaques</a>
-                <a href="#moda" class="nav-item">moda</a>
-                <a href="#sobre" class="nav-item">sobre</a>
-                <a href="#contato" class="nav-item">contato</a>
-            </nav>
-            <!-- // Navegação -->
-
-            <!-- Line -->
-            <div class="line">
-                <img src="./assets/img/icons/line-header.png" alt="|">
-            </div>
-            <!-- // Line -->
-
-            <!-- Pesquisa -->
-            <div class="header-pesquisa">
-                <input type="text" name="" id="">
-
-                <div class="pesquisa-icon">
-                    <img src="./assets/img/icons/search 1.png" alt="search">
-                </div>
-            </div>
-            <!-- // Pesquisa -->
-
-            <!-- Área de usuário -->
-            <div class="header-usuario-sacola-container">
-                <!-- Usuário -->
-                <div class="usuario">
-                    <div>
-                        <img src="./assets/img/icons/user 1.png" alt="user-icon">
-
-                    </div>
-                    <a href="#">Entrar</a>
-                </div>
-                <!-- // Usuário -->
-
-                <!-- Sacola de Compras -->
-                <div class="sacola-de-compras">
-                    <img src="./assets/img/icons/bag-shop 1.png" alt="bag-shop-icon">
-                </div>
-                <!-- // Sacola de Compras -->
-            </div>
-            <!-- Área de usuário -->
+      <div class="header container">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="./assets/img/icons/logo 1.png" alt="logo" />
         </div>
+        <!-- // Logo -->
+
+        <!-- Navegação -->
+        <nav>
+          <a href="#promocoes" class="nav-item">promoções</a>
+          <a href="#destaques" class="nav-item">destaques</a>
+          <a href="#moda" class="nav-item">moda</a>
+          <a href="#sobre" class="nav-item">sobre</a>
+          <a href="#contato" class="nav-item">contato</a>
+        </nav>
+        <!-- // Navegação -->
+
+        <!-- Line -->
+        <div class="line">
+          <img src="./assets/img/icons/line-header.png" alt="|" />
+        </div>
+        <!-- // Line -->
+
+        <!-- Pesquisa -->
+        <div class="header-pesquisa">
+          <input type="text" name="" id="" />
+
+          <div class="pesquisa-icon">
+            <img src="./assets/img/icons/search 1.png" alt="search" />
+          </div>
+        </div>
+        <!-- // Pesquisa -->
+
+        <!-- Área de usuário -->
+        <div class="header-usuario-sacola-container">
+          <!-- Usuário -->
+          <div class="usuario">
+            <div>
+              <img src="./assets/img/icons/user 1.png" alt="user-icon" />
+            </div>
+            <a href="#">Entrar</a>
+          </div>
+          <!-- // Usuário -->
+
+          <!-- Sacola de Compras -->
+          <div class="sacola-de-compras">
+            <img src="./assets/img/icons/bag-shop 1.png" alt="bag-shop-icon" />
+          </div>
+          <!-- // Sacola de Compras -->
+        </div>
+        <!-- Área de usuário -->
+      </div>
     </header>
     <!-- // Cabeçalho -->
 
     <!-- Slider -->
-    <section class="container-slider">
-        <!-- Controls -->
-        <div class="controls-">
+    <section class="container-slider container">
+      <!-- Controls Arrows -->
+      <div class="arrow-container previus" id="slider-controls-previus">
+        <img src="./assets/img/icons/arrow-1-left.png" alt="" />
+      </div>
+
+      <div class="arrow-container next" id="slider-controls-next">
+        <img src="./assets/img/icons/arrow-1-right.png" alt="" />
+      </div>
+      <!-- // Controls Arrows -->
+
+      <!-- Slides Container -->
+      <div id="slides-container"></div>
+      <!-- // Slides Container -->
+
+      <!-- Controls Balls -->
+      <div class="controls-balls container"></div>
+      <!-- // Controls Balls -->
+    </section>
+    <!-- // Slider -->
+
+    <!-- Destaques -->
+    <section class="container-destaques container">
+      <!-- Section Title -->
+      <div class="section-title">
+        <h1>Destaques</h1>
+      </div>
+      <!-- Section Title -->
+
+      <!-- Carousel Cards Container -->
+      <div class="carousel-cards-container">
+        <!-- Controls Arrows -->
+        <!-- <div class="controls-arrows" id=""> -->
+        <div class="arrow-container previus">
+          <img src="./assets/img/icons/arrow-2-left.png" alt="" />
+        </div>
+        <div class="arrow-container next">
+          <img src="./assets/img/icons/arrow-2-right.png" alt="" />
+        </div>
+        <!-- </div> -->
+        <!-- // Controls Arrows -->
+
+        <!-- Cards -->
+        <div class="cards">
+          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->
+
+
+
+
+
+
+
+
+
+          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->          <!-- Card -->
+          <div class="card">
+            <div class="link">
+              <a href="#">
+                <!-- Card Image -->
+                <div class="card-image">
+                  <!-- Card Descount -->
+                  <div class="card-descount">
+                    <span>-42%</span>
+                  </div>
+                  <!-- Card Descount -->
+
+                  <img src="assets/img/products/product1.png" alt="" />
+                </div>
+                <!-- // Card Image -->
+
+                <!-- Card Details -->
+                <div class="card-details">
+                  <!-- Card Details Title -->
+                  <div class="card-details-title" id="firstCard">
+                    <span>Calça Jeans Havicssen Rasgada Masculina</span>
+                  </div>
+                  <!-- // Card Details Title -->
+
+                  <!-- Card Details Ranking -->
+                  <div class="card-details-ranking">
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-meio-cheio.png"
+                      alt=""
+                    />
+                    <img
+                      src="assets/img/icons/estrela-favorito-social-vazio.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- // Card Details Ranking -->
+
+                  <!-- Card Old Price -->
+                  <div class="card-details-old-price">
+                    <span>R$ 99,99</span>
+                  </div>
+                  <!-- // Card Old Price -->
+
+                  <!-- Card New Price -->
+                  <div class="card-details-new-price">
+                    <span>R$ 69,99</span>
+                  </div>
+                  <!-- // Card New Price -->
+
+                  <!-- Card Free Shipping -->
+                  <div class="card-details-free-shipping">
+                    <div>
+                      <span>frete grátis</span>
+                    </div>
+                  </div>
+                  <!-- // Card Free Shipping -->
+                </div>
+                <!-- //Card Details -->
+              </a>
+            </div>
+          </div>
+          <!-- // Card  -->
+
+
+
+
+
+
+
+
+
+
 
         </div>
-        <!-- // Controls -->
-        
+        <!-- // Cards -->
+      </div>
+      <!-- // Carousel Cards Container -->
     </section>
-    <!-- Slider -->
-</body>
+    <!-- // Destaques -->
+  </body>
 </html>
