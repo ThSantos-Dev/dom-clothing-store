@@ -9,7 +9,7 @@
 'use strict'
 
 // Simulando BD
-const bd = [
+const bd_slider = [
     {
         'id'    : 1,
         'name'  : 'banner 1',
@@ -148,4 +148,4 @@ const autoSlide = ()  => {
     }, 3000)
 }
 // Iniciando Slider
-carregarSlides(bd)
+carregarSlides(bd_slider)
