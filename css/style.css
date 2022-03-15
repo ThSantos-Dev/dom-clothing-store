@@ -687,6 +687,9 @@ header nav {
   /* transform: scale(2) */
 }
 
+.container-moda-produtos .card .card-details-title{
+  font-weight: 300px;
+}
 .container-moda-produtos .card-image{
   width: 302px;
   height: 325px;
