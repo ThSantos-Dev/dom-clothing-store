@@ -9,6 +9,15 @@
 }
 /* ********************** */
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 180px;
+}
+
+#spacing-body {
+  height: 100px;
+}
+
 /* Palheta de cores */
 :root {
   --dark-color: #000000;
@@ -179,7 +188,7 @@ img {
 
 .card-details-title a {
   font-size: 1.125rem;
-  font-weight: 100;
+  font-weight: 300;
   text-transform: capitalize;
 
   text-decoration: none;
@@ -295,6 +304,9 @@ header {
   width: 100%;
   height: 100px;
 
+  position: fixed;
+  z-index: 9999;
+
   background-color: var(--dark-color);
 }
 
@@ -401,7 +413,7 @@ header nav {
   width: 50px;
   height: 50px;
 
-  /* background-color: var(--white-color); */
+  cursor: pointer;
 
   border-radius: 50%;
   margin-right: 5px;
@@ -416,6 +428,8 @@ header nav {
 .sacola-de-compras {
   width: 50px;
   height: 50px;
+
+  cursor: pointer;
 }
 /* // Área do usuário - usuario e sacola */
 /* ***************** */
@@ -423,7 +437,7 @@ header nav {
 /* Slider */
 .container-slider {
   width: 1440px;
-  height: 445px;
+
   overflow: hidden;
   transition: all 0.4s;
 
@@ -438,9 +452,7 @@ header nav {
 /* Slides Container */
 
 /* Slides */
-
 #slides-container {
-  /*slides*/
   width: inherit;
   height: 445px;
 
@@ -530,12 +542,6 @@ header nav {
 /* Section - Moda */
 .container-moda {
   padding: 88px 0 29px 0px;
-}
-
-/* Section - Moda */
-.container-moda {
-  height: 2200px;
-
 }
 
 .container-moda-conteudo {
@@ -644,11 +650,19 @@ header nav {
   font-size: 1.125rem;
 }
 
+.filtros-header div {
+  padding: 5px;
+  cursor: pointer;
+
+  display:flex;
+  align-items: center;
+
+}
+
 .filtros-header img {
   width: 14px;
   height: 1.48px;
 
-  cursor: pointer;
   align-self: center;
 }
 
@@ -662,9 +676,42 @@ header nav {
   margin-bottom: 10px;  
 }
 
+.filtro-chk input[type="checkbox"]{
+  cursor: pointer;
+}
+
 .filtro-chk:nth-last-child(1) {
   margin-bottom: 0px;
 }
+
+.filtro-tipo-produto-pesquisa {
+  width: 100%;
+  height: 35px;
+
+  margin-bottom: 28px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding-right: 2px;
+
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+}
+
+.filtro-tipo-produto-pesquisa input{
+  text-indent: 20px;
+  font-size: 1rem;
+}
+
+.filtro-tipo-produto-pesquisa img{
+  width: 25px;
+  height: 25px;
+
+  cursor: pointer;
+}
+/* **************************** */
+
 
 /* Moda - Produto */
 .container-moda-produtos {
@@ -676,6 +723,7 @@ header nav {
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
+
 }
 
 .container-moda-produtos .card{
@@ -713,7 +761,342 @@ header nav {
   width: 21px;
   height: 21px;
 }
-
-
-
 /* ************** */
+
+/* Section - Sobre*/
+.container-sobre {
+  padding-top: 66px;
+  margin-bottom: 60px;
+  border-top: 3px solid #c4c4c4;
+}
+
+/* Parágrafos */
+.sobre-container-paragrafos {
+  max-width: 1430px;
+  margin: auto;
+  margin-bottom: 135px;
+}
+
+.sobre-container-paragrafos p{
+  font-size: 1.5rem;
+  text-align: justify;
+  text-indent: 40px;
+}
+/* // Parágrafos */
+
+/* Missão, Visão e Valores */
+.sobre-container-missao-visao-valores {
+  width: inherit;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 22px;
+}
+
+.sobre-moldura {
+  width: 400px;
+  height: 400px;
+
+  padding-top: 57px;
+
+  background-image: url('../assets/img/icons/moldura.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.sobre-moldura h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  margin-bottom: 25px;
+}
+
+.sobre-moldura p {
+  padding: 0 55px;
+
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.sobre-moldura ul {
+  width: 70%;
+  padding-left: 50px;
+  margin: auto;
+}
+
+.sobre-moldura li {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+/* // Missão, Visão e Valores */
+/* ******************** */
+
+/* Section - Contato */
+.container-contato {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 215px;
+}
+
+.container-contato .section-title{
+  margin-bottom: 50px;
+}
+
+.contato-texto{
+  margin-bottom: 17px;
+}
+
+.contato-texto span{
+  font-size: 1.5rem;
+}
+
+/* Formulario */
+.contato-formulario-container{
+  width: 760px;
+  height: 800px;
+
+  margin: auto;
+  border: 3px solid #000;
+}
+
+.contato-formulario-container form{
+  width: inherit;
+  height: inherit;
+
+  padding: 26px 24px 36px 36px;
+}
+
+.contato-formulario-input {
+  width: 100%;
+  height: 35px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.contato-formulario-textarea label,
+.contato-formulario-input label  {
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  margin-right: 12px;
+}
+
+.contato-formulario-input input {
+  flex: 1;
+  height: 30px;
+
+  border: 1px solid #000;
+
+  text-indent: 15px;
+  font-size: 1.25rem;
+}
+
+.contato-formulario-textarea {
+  width: 100%;
+  height: 477px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contato-formulario-textarea label {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+
+.contato-formulario-textarea  textarea {
+  width: 644px;
+  height: 429px;
+
+  padding: 10px 20px;
+  margin-bottom: 50px;
+
+  font-size: 1.25rem;
+
+  resize: none;
+  border: 1px solid #000;
+}  
+
+.contato-formulario-botoes-container {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.contato-formulario-botao  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.contato-formulario-botao label {
+  font-size: 1.25rem;
+  font-weight: 500;
+
+  line-height: 20px;
+}
+
+.contato-formulario-botao input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+}
+
+.contato-formulario-botao input[type="button"] {
+  width: max-content;
+  padding: 6px 35px;
+
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #fff;
+
+  cursor: pointer;
+
+  border-radius: 20px;
+  background-color: #000;
+}
+
+.contato-formulario-botao:nth-last-child(1)  {
+  padding-right: 38px;
+}
+/* // Formulario */
+/* ***************** */
+
+/* Footer */
+footer {
+  width: 100%;
+
+  background-color: #f4f4f4;
+}
+
+.footer {
+  padding-bottom: 46px;
+}
+
+.footer-conteudo-container {
+  width: calc(100% - 180px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-top: 56px;
+  padding-left: 46px;
+
+  margin-bottom: 125px;
+}
+
+.footer-conteudo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.footer-conteudo-titulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.footer-conteudo p {
+  max-width: 405px;
+  padding-left: 15px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.footer-conteudo p:nth-last-child(1) {
+  text-transform: capitalize;
+}
+
+.footer-conteudo-contatos {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 15px;
+}
+
+.footer-contato{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-right: 55px;
+}
+
+.footer-contato h3{
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+.footer-contato span {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+
+
+.footer-contato:nth-last-child(1){
+  margin-right: 0;
+}
+
+
+.footer-conteudo-icone-rede-social img {
+  width: 40px;
+  height: 40px;
+
+  cursor: pointer;
+
+  margin-right: 20px;
+}
+
+.footer-conteudo-icone-rede-social img:nth-last-child(1) {
+  margin-right: 0;
+}
+
+.footer-descricao-container {
+  width: 980px;
+  margin: auto;
+}
+
+.footer-descricao-container p{
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.footer-descricao-container p:nth-child(1){
+  margin-bottom: 30px;
+}
+/* ************* */
+

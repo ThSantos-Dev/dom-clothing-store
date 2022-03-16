@@ -259,9 +259,22 @@ const bd_carousel_products_promocoes = [
   },
 ];
 
+let bd_produtos = []
+
+bd_carousel_products_destaques.forEach(product => {
+  bd_produtos.push(product);
+}); 
+
+bd_carousel_products_promocoes.forEach(product => {
+  bd_produtos.push(product);
+}); 
+
+console.log(bd_produtos);
+
+
+// Funções
 const carregarCardsCarousel = (products, idContainerCards) => {
   let cards = products.map(criarCardCarousel);
-  console.log(cards);
   document.getElementById(idContainerCards).replaceChildren(...cards);
 };
 
@@ -335,9 +348,7 @@ const criarCardCarousel = (product) => {
 
 let rankingStars = (ranking) => {
   let stringRanking = ranking.toString().split(".");
-  console.log(stringRanking);
   let integerRanking = parseInt(stringRanking[0]);
-  console.log(integerRanking);
 
   let starF =
     '<img src="assets/img/icons/estrela-favorito-social-cheio.png" alt=""/>'.repeat(
@@ -357,7 +368,6 @@ let rankingStars = (ranking) => {
       '<img src="assets/img/icons/estrela-favorito-social-meio-cheio.png" alt=""/>';
 
   let accumulator = starF + starM + star;
-  console.log(accumulator);
   return accumulator;
 };
 
@@ -377,7 +387,6 @@ const carouselCards = (
   const containerCards = document.getElementById(idContainerCards);
 
   const countCards = containerCards.children;
-  console.log(countCards);
   countCards[0].id = idFirstCard;
 
   // Verificando se deve exibir os controls ou não
@@ -435,3 +444,6 @@ carouselCards(
   "promocoes-carousel-cards-container",
   "promocoes-carousel-cards-card-first-card"
 );
+
+// Carregando cards na section Moda
+carregarCardsCarousel(bd_produtos, 'container-moda-produtos', false)
