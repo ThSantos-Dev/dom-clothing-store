@@ -689,7 +689,7 @@ header nav {
   margin-bottom: 10px;  
 }
 
-.filtro-chk input[type="checkbox"]{
+.filtro-chk input[type="checkbox"], .filtro-chk label{
   cursor: pointer;
 }
 
