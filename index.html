@@ -22,13 +22,18 @@
 
     <!-- Imports CSS and JS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/carousel-product.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
+
+    <script src="js/db.js" type="module" defer></script>
+    <script src="js/filter.js" defer></script>
+    <script src="js/carousel-product.js" type="module" defer></script>
+    <script src="js/modal.js" type="module" defer></script>
     <script src="js/slider.js" defer></script>
     <script src="js/main.js" defer></script>
   </head>
   <body>
     <!-- Cabeçalho -->
-    <header>
+    <header class="active">
       <div class="header container">
         <!-- Logo -->
         <a href="index.html" class="logo">
@@ -192,26 +197,14 @@
         <div class="container-moda-filtros">
           <!-- Filtros Selecionados -->
           <div class="container-moda-filtros-selecionados">
-            <h2>Filtros selecionados(2)</h2>
+            <h2 id="quantidade-filtros">Filtros</h2>
 
             <div class="container-moda-filtros-selecionados-filtros">
-              <!-- Filtro Selecionado -->
-              <div class="filtro-selecionado">
-                <span>Masculino</span>
-                <img src="./assets/img/icons/close.png" alt="x" />
-              </div>
-              <!-- // Filtro Selecionado -->
-
-              <!-- Filtro Selecionado -->
-              <div class="filtro-selecionado">
-                <span>Bermudas</span>
-                <img src="./assets/img/icons/close.png" alt="x" />
-              </div>
-              <!-- // Filtro Selecionado -->
+              
             </div>
 
             <div class="container-limpar-filtros">
-              <span>Limpar todos</span>
+              <span id="limpar-filtros">Limpar todos</span>
             </div>
           </div>
           <!-- // Filtros Selecionados -->
@@ -231,14 +224,14 @@
             <div class="container-filtros-conteudo">
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkMaculino" id="" />
+                <input type="checkbox" name="chkMaculino" id="chkMaculino" value="Masculino"/>
                 <label for="chkMaculino">Masculino</label>
               </div>
               <!-- // Filtro -->
 
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkFeminino" id="" />
+                <input type="checkbox" name="chkFeminino" id="chkFeminino" value="Feminino"/>
                 <label for="chkFeminino">Feminino</label>
               </div>
               <!-- // Filtro -->
@@ -269,26 +262,26 @@
             <div class="container-filtros-conteudo">
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkBlusas" id="" />
+                <input type="checkbox" value="Blusas" name="chkBlusas" id="chkBlusas" />
                 <label for="chkBlusas">Blusas</label>
               </div>
               <!-- // Filtro -->
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkBlusas" id="" />
-                <label for="chkBlusas">Camisetas</label>
+                <input type="checkbox" value="Camisetas" name="chkCamisetas" id="chkCamisetas" />
+                <label for="chkCamisetas">Camisetas</label>
               </div>
               <!-- // Filtro -->
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkBlusas" id="" />
-                <label for="chkBlusas">Bermudas</label>
+                <input type="checkbox" value="Bermudas" name="chkBermudas" id="chkBermudas" />
+                <label for="chkBermudas">Bermudas</label>
               </div>
               <!-- // Filtro -->
               <!-- Filtro -->
               <div class="filtro-chk">
-                <input type="checkbox" name="chkBlusas" id="" />
-                <label for="chkBlusas">Calças</label>
+                <input type="checkbox" value="Calças" name="chkCalcas" id="" />
+                <label for="chkCalcas">Calças</label>
               </div>
               <!-- // Filtro -->
             </div>

@@ -186,18 +186,19 @@ img {
   margin-bottom: 8px;
 }
 
-.card-details-title a {
+.card-details-title span {
   font-size: 1.125rem;
   font-weight: 300;
   text-transform: capitalize;
 
   text-decoration: none;
+  cursor: pointer;
   color: var(--dark-color);
 
   transition: all 0.5s;
 }
 
-.card-details-title a:hover {
+.card-details-title span:hover {
     font-size: 1.2rem;
     text-decoration: underline;
 }
@@ -304,10 +305,16 @@ header {
   width: 100%;
   height: 100px;
 
+  display: none;
+
   position: fixed;
-  z-index: 9999;
+  z-index: 4;
 
   background-color: var(--dark-color);
+}
+
+header.active{
+  display: block;
 }
 
 .header {
@@ -618,8 +625,14 @@ header nav {
   font-weight: 700px;
   color: #999999;
 
+  cursor: pointer;
   text-decoration: underline;
 }
+
+.container-limpar-filtros span {
+  display: none;
+}
+
 /* // Filtros Selecionados */
 
 .container-moda-filtros-container {

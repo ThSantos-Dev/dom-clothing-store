@@ -6,271 +6,7 @@
  ************************************************************/
 "use strict";
 
-const bd_carousel_products_destaques = [
-  {
-    id: 1,
-    title:
-      "Calça Jeans Havicssen Rasgada Masculina com 4 bolsos, costura dupla",
-    url: "./assets/img/products/product1.png",
-    descount: 42,
-    ranking: 3.5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: false,
-  },
-  {
-    id: 2,
-    title: "Bermuda Zwiq Fina com Elástico Masculina 4 bolsos leve",
-    url: "./assets/img/products/product2.png",
-    descount: 23,
-    ranking: 3,
-    oldPrice: 78.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    title:
-      "Vestido farm t-shit curto tapecaroa tropical lenço verde com flores",
-    url: "./assets/img/products/product3.png",
-    descount: null,
-    ranking: 4,
-    oldPrice: null,
-    newPrice: 169.99,
-    freeShipping: true,
-  },
-  {
-    id: 4,
-    title: "Kit Camiseta Básica Hering Manga Curta Feminina bela estampa",
-    url: "./assets/img/products/product4.png",
-    descount: null,
-    ranking: 3.5,
-    oldPrice: null,
-    newPrice: 89.99,
-    freeShipping: true,
-  },
-  {
-    id: 5,
-    title: "Jaqueta Sarja Cambos Cropped Manga Bufante Verde Argila",
-    url: "./assets/img/products/product5.png",
-    descount: 76,
-    ranking: 5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 6,
-    title: "Camisa Milano Manga Longa Masculina",
-    url: "./assets/img/products/product10.png",
-    descount: 20,
-    ranking: 4.5,
-    oldPrice: 99.99,
-    newPrice: 79.99,
-    freeShipping: true,
-  },
-  {
-    id: 1,
-    title:
-      "Calça Jeans Havicssen Rasgada Masculina com 4 bolsos, costura dupla",
-    url: "./assets/img/products/product1.png",
-    descount: 42,
-    ranking: 3.5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: false,
-  },
-  {
-    id: 2,
-    title: "Bermuda Zwiq Fina com Elástico Masculina 4 bolsos leve",
-    url: "./assets/img/products/product2.png",
-    descount: 23,
-    ranking: 3,
-    oldPrice: 78.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    title:
-      "Vestido farm t-shit curto tapecaroa tropical lenço verde com flores",
-    url: "./assets/img/products/product3.png",
-    descount: null,
-    ranking: 4,
-    oldPrice: null,
-    newPrice: 169.99,
-    freeShipping: true,
-  },
-  {
-    id: 4,
-    title: "Kit Camiseta Básica Hering Manga Curta Feminina bela estampa",
-    url: "./assets/img/products/product4.png",
-    descount: null,
-    ranking: 3.5,
-    oldPrice: null,
-    newPrice: 89.99,
-    freeShipping: true,
-  },
-  {
-    id: 5,
-    title: "Jaqueta Sarja Cambos Cropped Manga Bufante Verde Argila",
-    url: "./assets/img/products/product5.png",
-    descount: 76,
-    ranking: 5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 6,
-    title: "Camisa Milano Manga Longa Masculina",
-    url: "./assets/img/products/product10.png",
-    descount: 20,
-    ranking: 4.5,
-    oldPrice: 99.99,
-    newPrice: 79.99,
-    freeShipping: true,
-  },
-  {
-    id: 1,
-    title:
-      "Calça Jeans Havicssen Rasgada Masculina com 4 bolsos, costura dupla",
-    url: "./assets/img/products/product1.png",
-    descount: 42,
-    ranking: 3.5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: false,
-  },
-  {
-    id: 2,
-    title: "Bermuda Zwiq Fina com Elástico Masculina 4 bolsos leve",
-    url: "./assets/img/products/product2.png",
-    descount: 23,
-    ranking: 3,
-    oldPrice: 78.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    title:
-      "Vestido farm t-shit curto tapecaroa tropical lenço verde com flores",
-    url: "./assets/img/products/product3.png",
-    descount: null,
-    ranking: 4,
-    oldPrice: null,
-    newPrice: 169.99,
-    freeShipping: true,
-  },
-  {
-    id: 4,
-    title: "Kit Camiseta Básica Hering Manga Curta Feminina bela estampa",
-    url: "./assets/img/products/product4.png",
-    descount: null,
-    ranking: 3.5,
-    oldPrice: null,
-    newPrice: 89.99,
-    freeShipping: true,
-  },
-  {
-    id: 5,
-    title: "Jaqueta Sarja Cambos Cropped Manga Bufante Verde Argila",
-    url: "./assets/img/products/product5.png",
-    descount: 76,
-    ranking: 5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: true,
-  },
-  {
-    id: 6,
-    title: "Camisa Milano Manga Longa Masculina",
-    url: "./assets/img/products/product10.png",
-    descount: 20,
-    ranking: 4.5,
-    oldPrice: 99.99,
-    newPrice: 79.99,
-    freeShipping: true,
-  },
-];
-
-const bd_carousel_products_promocoes = [
-  {
-    id: 1,
-    title: "Camiseta Hering Básica Gola V Feminina",
-    url: "./assets/img/products/product6.png",
-    descount: 42,
-    ranking: 3.5,
-    oldPrice: 39.99,
-    newPrice: 22.99,
-    freeShipping: false,
-  },
-  {
-    id: 2,
-    title: "Jaqueta Sarja Cambos Cropped Manga Buffante",
-    url: "./assets/img/products/product7.png",
-    descount: 23,
-    ranking: 3.5,
-    oldPrice: 181.99,
-    newPrice: 128.99,
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    title: "Camiseta Hering Básica Golva V Feminina",
-    url: "./assets/img/products/product8.png",
-    descount: 38,
-    ranking: 3.5,
-    oldPrice: 54.99,
-    newPrice: 30.99,
-    freeShipping: false,
-  },
-  {
-    id: 4,
-    title: "Kit Camiseta Vista Magalu Gola V 5 Peças",
-    url: "./assets/img/products/product9.png",
-    descount: 15,
-    ranking: 3.5,
-    oldPrice: 159.99,
-    newPrice: 149.99,
-    freeShipping: false,
-  },
-  {
-    id: 5,
-    title: "Camisa Milano Manga Longa Masculina",
-    url: "./assets/img/products/product10.png",
-    descount: 20,
-    ranking: 3.5,
-    oldPrice: 99.99,
-    newPrice: 79.99,
-    freeShipping: true,
-  },
-  {
-    id: 6,
-    title:
-      "Calça Jeans Havicssen Rasgada Masculina com 4 bolsos, costura dupla",
-    url: "./assets/img/products/product1.png",
-    descount: 42,
-    ranking: 3.5,
-    oldPrice: 99.99,
-    newPrice: 69.99,
-    freeShipping: false,
-  },
-];
-
-let bd_produtos = []
-
-bd_carousel_products_destaques.forEach(product => {
-  bd_produtos.push(product);
-}); 
-
-bd_carousel_products_promocoes.forEach(product => {
-  bd_produtos.push(product);
-}); 
-
-console.log(bd_produtos);
-
+import {bd_carousel_products_destaques, bd_carousel_products_promocoes, bd_produtos} from "./db.js"
 
 // Funções
 const carregarCardsCarousel = (products, idContainerCards) => {
@@ -281,6 +17,7 @@ const carregarCardsCarousel = (products, idContainerCards) => {
 const criarCardCarousel = (product) => {
   const card = document.createElement("div");
   card.classList.add("card");
+  card.setAttribute('data-id-product', `product-${product.id}`);
 
   const shortTitle = product.title.trim().slice(0, 40).trim();
 
@@ -302,8 +39,8 @@ const criarCardCarousel = (product) => {
       <!-- Card Details -->
       <div class="card-details">
         <!-- Card Details Title -->
-        <div class="card-details-title">
-          <a href="#">${shortTitle}...</a>
+        <div class="card-details-title" >
+          <span>${shortTitle}...</span>
         </div>
         <!-- // Card Details Title -->
 
@@ -346,7 +83,7 @@ const criarCardCarousel = (product) => {
   return card;
 };
 
-let rankingStars = (ranking) => {
+export const rankingStars = (ranking) => {
   let stringRanking = ranking.toString().split(".");
   let integerRanking = parseInt(stringRanking[0]);
 
@@ -446,4 +183,5 @@ carouselCards(
 );
 
 // Carregando cards na section Moda
-carregarCardsCarousel(bd_produtos, 'container-moda-produtos', false)
+carregarCardsCarousel(bd_produtos, 'container-moda-produtos')
+
