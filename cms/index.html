@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - CMS</title>
+
+    <!-- Importação de font externa GoogleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container-login">
+      <!-- Title -->
+      <div class="login-title">
+        <h1>Autenticação para o CMS</h1>
+        <span>DOM - DESVENDO O MUNDO</span>
+      </div>
+      <!-- // Title -->
+
+      <!-- Form -->
+      <form action="" method="POST" id="frmLogin" class="login-form">
+        <div class="login-components">
+          <!-- Login -->
+          <div class="login-component">
+            <label for="txtLogin">Login:</label>
+            <input type="text" name="txtLogin" id="login" />
+          </div>
+          <!-- // Login -->
+
+          <!-- Password -->
+          <div class="login-component">
+            <label for="txtPassword">Senha:</label>
+            <input type="password" name="txtPassword" id="password" />
+          </div>
+          <!-- // Password -->
+        </div>
+
+        <!-- Button Login -->
+        <div class="login-button">
+            <button name="btnLogin">Login</button>
+        </div>
+        <!-- // Button Login -->
+      </form>
+      <!-- // Form -->
+    </div>
+  </body>
+</html>

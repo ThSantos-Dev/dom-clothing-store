@@ -20,12 +20,13 @@ const changeMain = () => {
 };
 
 const deliveryTimeReturn = async () => {
+  let isCEP = (cep) => (/^[0-9]{8}$/).test(cep);
+
   const btnChangeCep = document.getElementById("changeCep");
   const cep = document.getElementById("inputCep");
 
-  if (cep.value.toString().length !== 8)
-    alert("CEP INVÁLIDO\nO CEP deve possuir exatamente 8 dígitos.");
-  else {
+  if(isCEP(cep.value.toString())) {
+    
     let data = await searchCEP(cep.value.toString());
     if (data.erro) alert("ERRO!\nO CEP informado não existe!");
     else {
@@ -43,6 +44,8 @@ const deliveryTimeReturn = async () => {
       });
       containerAddres.innerHTML = `<span>${data.logradouro} - ${data.bairro} - ${data.uf}</span>`;
     }
+  } else {
+    alert("ERRO! \nVerifique se o CEP foi inserido corretamente, não é permitido caracteres NÃO NUMÉRICOS.\nO CEP deve possuir exatamente 8 digítos.")
   }
 };
 
