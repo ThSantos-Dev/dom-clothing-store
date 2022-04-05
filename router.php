@@ -25,12 +25,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
             // Import da controller de Contatos
             require_once('cms/controller/controllerContato.php');
 
-            // Validação para identificar o tipo de ação que será realizada 
+            // Validações para identificar o tipo de ação que será realizada 
             if($action == 'INSERIR'){
                 // Chama a função de inserir na controller
                 $resposta = inserirContato($_POST);
-
-                var_dump($_POST);
 
                 // Valida o tipo de daos que a controller retornou
                 if(is_bool($resposta)){
@@ -38,17 +36,39 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
                     if($resposta)
                     echo "<script>
                             alert('Registro Inserido com Sucesso!')
-                            window.location.href = 'index.php'
+                            window.location.href = 'index.php#contato'
                             </script>";
                     
                 // Se o retorno for um array significa houve erro no processo de inserção 
                 } elseif(is_array($resposta)){
-                    echo 'erro';
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+            }
 
-                    // echo "<script>
-                    //         alert('".$resposta['message']."')
-                    //         window.history.back()
-                    //     </script>";
+            if($action = 'DELETAR') {
+                // Resgatando o ID do registro que deverá ser exluído.
+                $idContato = $_GET['id'];
+
+                // Chamando a função de exluir o registro na Controller
+                $resposta = excluirContato($idContato);
+                 // Valida o tipo de dados que a controller retornou
+                 if(is_bool($resposta)){
+                    // Verificando se p retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Excluido com Sucesso!')
+                            window.location.href = 'cms/dashboard.php'
+                         </script>";
+                  
+                // Se o retorno for um array significa houve erro no processo de inserção 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
                 }
             }
             break;

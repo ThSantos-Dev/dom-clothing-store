@@ -1,6 +1,6 @@
 table {
     width: 100%;
-    min-height: 300px;
+    min-height: 150px;
     height: auto;
 
     margin-top: 60px;
@@ -56,8 +56,22 @@ table td i {
     margin-right: 10px;
 }
 
-table td i:hover {
+table td.acoes a{
+    text-decoration: none;
+    display: inline;
+    color: #111;
+}
+
+table td.acoes i:hover {
     cursor: pointer;
 
     transform: scale(1.2);
+}
+
+.fa-solid.fa-envelope.red {
+    color: red;
+}
+
+.fa-solid.fa-envelope.green {
+    color: green;
 }

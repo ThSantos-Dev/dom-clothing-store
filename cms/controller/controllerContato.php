@@ -23,10 +23,10 @@ function inserirContato($dadosContato)
              * OBS.: criar as chaves do Array conforme os nomes dos atributos do BD
              ****************************************************************************/
 
-            $atualizacoes_email = (bool) false;
+            $atualizacoes_email = (int) 0;
 
-             if(!empty($_POST['txtAtualizacoes']))
-                $atualizacoes_email = true;
+            if (isset($_POST['txtAtualizacoes']))
+                $atualizacoes_email = 1;
 
             $arrayDados = array(
                 "nome"                 => $dadosContato['txtNome'],
@@ -36,12 +36,11 @@ function inserirContato($dadosContato)
                 "atualizacoes_email"   => $atualizacoes_email
             );
 
-
             //  Import do arquivo de modelagem para manipular o BD
             require_once('cms/model/bd/contato.php');
 
             // Chamando a função para inserir contato no BD
-            if (insertContato($arrayDados, $atualizacoes_email))
+            if (insertContato($arrayDados))
                 return true;
             else
                 return array(
@@ -70,4 +69,27 @@ function listaContatos()
         return $dados;
     else
         return false;
+}
+
+// Função para exluir contato no BD
+function excluirContato($id)
+{
+    // Validação para verificar se o $id é um número VÁLIDO
+    if ($id != 0 && !empty($id) && is_numeric($id)) {
+        // Import do arqivo de modelagem para manipular o BD
+        require_once('cms\model\bd\contato.php');
+
+        // Chama a função da model 
+        if (deleteContato($id))
+            return true;
+        else
+            return array(
+                'idErro'   => 3,
+                'message'  => 'O banco de dados não pode excluir o registro.'
+            );
+    } else
+        return array(
+            'idErro'   => 4,
+            'message'  => 'Não é possível excluir um registro sem informar um ID válido.'
+        );
 }

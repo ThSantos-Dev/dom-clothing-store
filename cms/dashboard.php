@@ -105,7 +105,7 @@
             <thead>
                 <th>Nome</th>
                 <th>Telefone</th>
-                <th>E-mail</th>
+                <th colspan="2">E-mail</th>
                 <th>Opções</th>
             </thead>
 
@@ -125,8 +125,12 @@
                         <td><?= $item['telefone'] ?></td>
                         <td><?= $item['email'] ?></td>
                         <td>
-                            <i class="fa-solid fa-trash-can" title="Excluir"></i>
-                            <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+                            <i class="fa-solid fa-envelope <?= $item['atualizacoes_email'] == 1 ? 'green' : 'red'?>"></i>
+                        </td>
+                        <td class="acoes">
+                            <a onclick="return confirm('Deseja realmente excluir o contato: <?=$item['nome']?>')" href="../router.php?component=contatos&action=deletar&id=<?=$item['id']?>">
+                                <i class="fa-solid fa-trash-can" title="Excluir"></i>
+                            </a>
                             <i class="fa-solid fa-eye" title="Visualizar"></i>
                         </td>
                     </tr>
