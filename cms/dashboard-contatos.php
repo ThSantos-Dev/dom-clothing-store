@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/dashboard-contatos.css">
-    
+
 </head>
 
 <body>
@@ -63,9 +63,9 @@
             </div>
             <!-- // Action - Adm de Produtos -->
 
-            <!-- Action - Contatos -->
+            <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <a href="dashboard-contatos.php">
+                <a href="">
                     <img src="assets/img/icon/contact-form.png" alt="">
                     <span>Contatos</span>
                 </a>
@@ -105,10 +105,49 @@
     <!-- Content Area -->
     <section class="content container">
         <!-- <h1 class="section-title">Adiministração de Produtos</h1> -->
-        <h1 class="section-title">Administração de produtos</h1>
+        <h1 class="section-title">Contatos</h1>
 
 
-        
+        <!-- Table contact -->
+        <table>
+            <thead>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th colspan="2">E-mail</th>
+                <th>Opções</th>
+            </thead>
+
+            <tbody>
+                <?php
+                // Import do arquivo da controller para solicitar a listagem dos dados
+                require_once('controller/controllerContato.php');
+
+                // Chama a função que vai retornar os dados de contato
+                $listContato = listaContatos();
+
+                // Estrutura de repetição para retornar os dados do array e printar na tela
+                foreach ($listContato as $item) {
+                ?>
+                    <tr>
+                        <td><?= $item['nome'] ?></td>
+                        <td><?= $item['telefone'] ?></td>
+                        <td><?= $item['email'] ?></td>
+                        <td>
+                            <i class="fa-solid fa-envelope <?= $item['atualizacoes_email'] == 1 ? 'green' : 'red' ?>"></i>
+                        </td>
+                        <td class="acoes">
+                            <a onclick="return confirm('Deseja realmente excluir o contato: <?= $item['nome'] ?>')" href="../router.php?component=contatos&action=deletar&id=<?= $item['id'] ?>">
+                                <i class="fa-solid fa-trash-can" title="Excluir"></i>
+                            </a>
+                            <i class="fa-solid fa-eye" title="Visualizar"></i>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <!-- // Table contact -->
     </section>
     <!-- // Content Area -->
 
