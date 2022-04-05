@@ -977,7 +977,7 @@ header nav {
   cursor: pointer;
 }
 
-.contato-formulario-botao input[type="button"] {
+.contato-formulario-botao input[type="submit"] {
   width: max-content;
   padding: 6px 35px;
 

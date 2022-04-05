@@ -283,6 +283,8 @@ body#index {
   min-height: 100vh;
 
   padding-top: 40px;
+  margin-bottom: 80px;
+
   border-top: 3px solid #c3c3c3;
 }
 
