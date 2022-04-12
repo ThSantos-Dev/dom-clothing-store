@@ -1,4 +1,22 @@
 <?php
+    $form = 'router.php?component=categorias&action=inserir';
+
+
+    // Valida se a utilização de variáveis de sessão esta ativa no servidor
+    if (session_status()) {
+        // Valida se a variável de sessão dadosContato NÃO esta vazia
+        if (!empty($_SESSION['dadosCategoria'])) {
+            $id          = $_SESSION['dadosCategoria']['id'];
+            $nome        = $_SESSION['dadosCategoria']['nome'];
+
+            // Mudamos a ação do form para editar o registro no click do botão salvar
+            $form = 'router.php?component=categorias&action=editar&id=' . $id;
+
+            // Destrói uma variável da memória do servidor
+            unset($_SESSION['dadosContato']);
+        }
+    }
+
 
 ?>
 
@@ -114,9 +132,9 @@
         <div class="catergoria-content">
             <!-- Add category Container -->
             <div class="categoria-form-add">
-                <form action="">
+                <form action="<?= $form?>" method="post">
                     <label for="txtCategoria">Categoria:</label>
-                    <input type="text" name="txtCategoria" id="txtCategoria" placeholder="Insira uma nova categoria...">
+                    <input type="text" name="txtCategoria" id="txtCategoria" placeholder="Insira uma nova categoria..." value="<?= !empty($nome) ? $nome : null?>">
                     <input type="submit" name="btnEnviar" value="+" title="Adicionar">
                 </form>
             </div>
@@ -125,24 +143,36 @@
             <!-- List Category Container -->
                 <table class="categoria-table">
                     <thead>
-                        <th>#ID</th>
                         <th>Nome</th>
                         <th>Opções</th>
                     </thead>
                     <tbody>
+                        <?php
+                            // Import do arquivo da controller para solicitar a listagem de dados
+                            require_once('controller/controllerCategoria.php');
+
+                            // Chama a função que vai retornar os dados de categoria
+                            if($listCategorias = listaCategorias()){
+                                // Estrutura de repetição para retornar os dados do array e printar na tela
+                                foreach($listCategorias as $item){
+                        ?>
+
                         <tr>
-                            <td>1</td>
-                            <td class="categoria-nome">Bermudas</td>
+                            <td class="categoria-nome"><?= $item['nome']?></td>
                             <td class="acoes">
-                                <a href="">
+                                <a onclick="return confirm('Deseja realmente excluir o contato: <?= $item['nome'] ?>')" href="router.php?component=categorias&action=deletar&id=<?= $item['id'] ?>">
                                     <i class="fa-solid fa-trash-can" title="Excluir"></i>
                                 </a>
 
-                                <a href="">
+                                <a href="router.php?component=categorias&action=buscar&id=<?= $item['id'] ?>">
                                     <i class="fa-solid fa-pen-to-square" title="Editar"></i>
                                 </a>
                             </td>
                         </tr>
+                        <?php
+                                }
+                            }                        
+                        ?>
                     </tbody>
                 </table>
             <!-- // List Category Container -->
