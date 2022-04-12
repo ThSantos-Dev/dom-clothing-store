@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/dashboard-contatos.css">
-    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard-categorias.css">
+
 </head>
 
-<body>
+<body id="categorias">
     <!-- Header -->
     <header>
         <div class="header-content container">
@@ -47,29 +51,37 @@
         <div class="dashboard-content-actions-container">
             <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <img src="assets/img/icon/box.png" alt="">
-                <span>Adm. de Produtos</span>
+                <a href="">
+                    <img src="assets/img/icon/box.png" alt="">
+                    <span>Adm. de Produtos</span>
+                </a>
             </div>
             <!-- // Action - Adm de Produtos -->
 
             <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <img src="assets/img/icon/lista-de-controle.png" alt="">
-                <span>Adm. de Categorias</span>
+                <a href="">
+                    <img src="assets/img/icon/lista-de-controle.png" alt="">
+                    <span>Adm. de Categorias</span>
+                </a>
             </div>
             <!-- // Action - Adm de Produtos -->
 
             <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <img src="assets/img/icon/contact-form.png" alt="">
-                <span>Contatos</span>
+                <a href="dashboard-contatos.php">
+                    <img src="assets/img/icon/contact-form.png" alt="">
+                    <span>Contatos</span>
+                </a>
             </div>
             <!-- // Action - Adm de Produtos -->
 
             <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <img src="assets/img/icon/people.png" alt="">
-                <span>Usuários</span>
+                <a href="">
+                    <img src="assets/img/icon/people.png" alt="">
+                    <span>Usuários</span>
+                </a>
             </div>
             <!-- // Action - Adm de Produtos -->
         </div>
@@ -96,50 +108,46 @@
 
     <!-- Content Area -->
     <section class="content container">
-        <!-- <h1 class="section-title">Adiministração de Produtos</h1> -->
-        <h1 class="section-title">Contatos</h1>
+        <h1 class="section-title">categorias</h1>
 
+        <!-- Content -->
+        <div class="catergoria-content">
+            <!-- Add category Container -->
+            <div class="categoria-form-add">
+                <form action="">
+                    <label for="txtCategoria">Categoria:</label>
+                    <input type="text" name="txtCategoria" id="txtCategoria" placeholder="Insira uma nova categoria...">
+                    <input type="submit" name="btnEnviar" value="+" title="Adicionar">
+                </form>
+            </div>
+            <!-- // Add category Conbtainer -->
 
-        <!-- Table contact -->
-        <table>
-            <thead>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th colspan="2">E-mail</th>
-                <th>Opções</th>
-            </thead>
+            <!-- List Category Container -->
+                <table class="categoria-table">
+                    <thead>
+                        <th>#ID</th>
+                        <th>Nome</th>
+                        <th>Opções</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="categoria-nome">Bermudas</td>
+                            <td class="acoes">
+                                <a href="">
+                                    <i class="fa-solid fa-trash-can" title="Excluir"></i>
+                                </a>
 
-            <tbody>
-                <?php
-                // Import do arquivo da controller para solicitar a listagem dos dados
-                require_once('controller/controllerContato.php');
-
-                // Chama a função que vai retornar os dados de contato
-                $listContato = listaContatos();
-
-                // Estrutura de repetição para retornar os dados do array e printar na tela
-                foreach ($listContato as $item) {
-                ?>
-                    <tr>
-                        <td><?= $item['nome'] ?></td>
-                        <td><?= $item['telefone'] ?></td>
-                        <td><?= $item['email'] ?></td>
-                        <td>
-                            <i class="fa-solid fa-envelope <?= $item['atualizacoes_email'] == 1 ? 'green' : 'red'?>"></i>
-                        </td>
-                        <td class="acoes">
-                            <a onclick="return confirm('Deseja realmente excluir o contato: <?=$item['nome']?>')" href="../router.php?component=contatos&action=deletar&id=<?=$item['id']?>">
-                                <i class="fa-solid fa-trash-can" title="Excluir"></i>
-                            </a>
-                            <i class="fa-solid fa-eye" title="Visualizar"></i>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-        <!-- // Table contact -->
+                                <a href="">
+                                    <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- // List Category Container -->
+        </div>
+        <!-- // Content -->
     </section>
     <!-- // Content Area -->
 

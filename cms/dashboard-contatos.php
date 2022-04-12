@@ -56,7 +56,7 @@
 
             <!-- Action - Adm de Produtos -->
             <div class="dashboard-content-action">
-                <a href="">
+                <a href="dashboard-categorias.php">
                     <img src="assets/img/icon/lista-de-controle.png" alt="">
                     <span>Adm. de Categorias</span>
                 </a>
@@ -123,26 +123,27 @@
                 require_once('controller/controllerContato.php');
 
                 // Chama a função que vai retornar os dados de contato
-                $listContato = listaContatos();
+                if ($listContato = listaContatos()) {
 
-                // Estrutura de repetição para retornar os dados do array e printar na tela
-                foreach ($listContato as $item) {
+                    // Estrutura de repetição para retornar os dados do array e printar na tela
+                    foreach ($listContato as $item) {
                 ?>
-                    <tr>
-                        <td><?= $item['nome'] ?></td>
-                        <td><?= $item['telefone'] ?></td>
-                        <td><?= $item['email'] ?></td>
-                        <td>
-                            <i class="fa-solid fa-envelope <?= $item['atualizacoes_email'] == 1 ? 'green' : 'red' ?>"></i>
-                        </td>
-                        <td class="acoes">
-                            <a onclick="return confirm('Deseja realmente excluir o contato: <?= $item['nome'] ?>')" href="../router.php?component=contatos&action=deletar&id=<?= $item['id'] ?>">
-                                <i class="fa-solid fa-trash-can" title="Excluir"></i>
-                            </a>
-                            <i class="fa-solid fa-eye" title="Visualizar"></i>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><?= $item['nome'] ?></td>
+                            <td><?= $item['telefone'] ?></td>
+                            <td><?= $item['email'] ?></td>
+                            <td>
+                                <i class="fa-solid fa-envelope <?= $item['atualizacoes_email'] == 1 ? 'green' : 'red' ?>"></i>
+                            </td>
+                            <td class="acoes">
+                                <a onclick="return confirm('Deseja realmente excluir o contato: <?= $item['nome'] ?>')" href="../router.php?component=contatos&action=deletar&id=<?= $item['id'] ?>">
+                                    <i class="fa-solid fa-trash-can" title="Excluir"></i>
+                                </a>
+                                <i class="fa-solid fa-eye" title="Visualizar"></i>
+                            </td>
+                        </tr>
                 <?php
+                    }
                 }
                 ?>
             </tbody>

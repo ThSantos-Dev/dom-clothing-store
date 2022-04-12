@@ -76,8 +76,6 @@ function insertContato($dadosContato)
         " . $dadosContato['atualizacoes_email'] . "
     )";
 
-    // echo $sql;
-    // die;
     // Chamada da função mysqli_query($conexao, $sql) que executa um script no BD
     if (mysqli_query($conexao, $sql)) {
         // Validação para verificar se uma linha foi afetada (acrescentada) no BD

@@ -60,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
                     if($resposta)
                     echo "<script>
                             alert('Registro Excluido com Sucesso!')
-                            window.location.href = 'cms/dashboard.php'
+                            window.location.href = 'cms/dashboard-contatos.php'
                          </script>";
                   
                 // Se o retorno for um array significa houve erro no processo de inserção 

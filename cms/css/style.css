@@ -301,6 +301,10 @@ body#index {
 .section-title {
   font-size: 3rem;
 }
+
+.section-title::first-letter {
+  text-transform: uppercase;
+}
   /* ************* */
 
 /* Footer */
