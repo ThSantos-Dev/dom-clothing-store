@@ -186,13 +186,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
 
 
             }
+            break;
 
+        case 'USUARIOS':   
+            // Import da controller de Usuarios
+            require_once('controller/controllerUsuario.php');
+
+            // Validações para identificar o tipo de ação que será realizada 
+            if($action == 'INSERIR'){
+                // Chama a função de inserir na controller
+                $resposta = inserirUsuario($_POST);
+
+                // Valida o tipo de daos que a controller retornou
+                if(is_bool($resposta)){
+                    // Verificando se p retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Inserido com Sucesso!')
+                            window.location.href = 'dashboard-usuarios.php'
+                            </script>";
+                    
+                // Se o retorno for um array significa houve erro no processo de inserção 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+            } 
 
             break;
         default:
             break;
     }
 }
-
-
-?>
