@@ -102,7 +102,7 @@ function selectByIdCategoria($id) {
     // Abre a conexão com o BD
     $conexao = conexaoMySQL();
 
-    // script para buscar um Contato do dados do BD
+    // script para buscar uma Categoria do dados do BD
     $sql = "select * from tbl_categorias where id_categoria = ".$id;
     $result = mysqli_query($conexao, $sql);
 

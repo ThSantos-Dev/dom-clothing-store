@@ -69,8 +69,9 @@ function insertUsuario($dadosUsuario)
         '" . $dadosUsuario['telefone'] . "',
         '" . $dadosUsuario['email'] . "',
         '" . $dadosUsuario['senha'] . "',
-        " . $dadosUsuario['data_nascimento'] . "
+        '" . $dadosUsuario['data_nascimento'] . "'
     )";
+
 
     // Chamada da função mysqli_query($conexao, $sql) que executa um script no BD
     if (mysqli_query($conexao, $sql)) {
@@ -85,8 +86,45 @@ function insertUsuario($dadosUsuario)
     return $statusResposta;
 }
 
+// Função que busca usuário pelo ID
+function selectUsuarioById($id) {
+    // Abre a conexão com o BD
+    $conexao = conexaoMySQL();
 
+    // script para buscar um Usuario do dados do BD
+    $sql = "select * from tbl_usuarios where id_categoria = ".$id;
+    $result = mysqli_query($conexao, $sql);
 
+    // Valida se o BD retornou registros
+    if ($result) {
+        // dentro do if o $rsDados recebe os dados do banco
+
+        /**
+         * mysqli_fetch_assoc() - permite converter os dados do BD em um array para 
+         *                          manipulação no PHP 
+         * Nesta repetição estamos, convertendo os dados do BD em um array ($rsDados),
+         * além de o próprio if conseguir gerenciar se o banco retornou dados
+         * e atribui a variável $rsDados
+         * 
+         */
+        if ($rsDados = mysqli_fetch_assoc($result)) {
+            // Cria um array com dados do BD
+            $arrayDados= array(
+                "nome"                 => $rsDados['nome'],
+                "telefone"             => $rsDados['telefone'],
+                "email"                => $rsDados['email'],
+                "senha"                => $rsDados['senha'],
+                "data_nascimento"      => $rsDados['data_nascimento']
+            );
+        }
+
+        // Solicita o fechamento da conexão com o BD
+        fecharConexaoMySQL($conexao);
+
+        return $arrayDados;
+    }
+
+}
 
 
 

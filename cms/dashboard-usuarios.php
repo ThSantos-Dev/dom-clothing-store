@@ -105,9 +105,9 @@
   <section class="content container">
     <h1 class="section-title">Usuários</h1>
 
-    <div class="form-container">
+     <div class="form-container">
       <!-- Form  -->
-      <form action="router.php?component=usuarios">
+      <form action="router.php?component=usuarios&action=inserir" method="post">
         <h2>Cadastro de Usuários</h2>
 
         <!-- Name -->
@@ -134,8 +134,8 @@
 
           <!-- Phone -->
           <div class="form-group">
-            <label for="dateNasc">Data de nascimento:</label>
-            <input type="date" name="dateNasc" />
+            <label for="dateNascimento">Data de nascimento:</label>
+            <input type="date" name="dateNascimento" />
           </div>
           <!-- // Phone -->
         </div>

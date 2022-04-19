@@ -37,7 +37,7 @@ function inserirContato($dadosContato)
             );
 
             //  Import do arquivo de modelagem para manipular o BD
-            require_once('cms/model/bd/contato.php');
+            require_once('cms/model/bd/usuario.php');
 
             // Chamando a função para inserir contato no BD
             if (insertContato($arrayDados))

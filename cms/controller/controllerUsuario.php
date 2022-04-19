@@ -24,12 +24,13 @@ function listaUsuarios()
 
 //  Função para inserir contato no BD
 function inserirUsuario($dadosUsuario)
-{
+{ 
     // Validação para verificar se o objeto está vazio
     if (!empty($dadosUsuario)) {
+
         // Validação para verificar se os itens obrigatórios no BD estão preenchidos
-        // Nome e email
-        if (!empty($dadosUsuario['txtNome']) && !empty($dadosUsuario['txtEmail'])) {
+        // Nome e email, data de nascimento
+        if (!empty($dadosUsuario['txtNome']) && !empty($dadosUsuario['txtEmail']) && !empty($dadosUsuario['dateNascimento'])) {
             /**
              * Criação do array de dados que será encaminhado a model para 
              * inserção no BD, é importante criar este array conforme
@@ -37,11 +38,6 @@ function inserirUsuario($dadosUsuario)
              * 
              * OBS.: criar as chaves do Array conforme os nomes dos atributos do BD
              ****************************************************************************/
-
-            $atualizacoes_email = (int) 0;
-
-            if (isset($_POST['txtAtualizacoes']))
-                $atualizacoes_email = 1;
 
             $arrayDados = array(
                 "nome"                 => $dadosUsuario['txtNome'],
@@ -52,7 +48,7 @@ function inserirUsuario($dadosUsuario)
             );
 
             //  Import do arquivo de modelagem para manipular o BD
-            require_once('cms/model/bd/usuario.php');
+            require_once('model/bd/usuario.php');
 
             // Chamando a função para inserir contato no BD
             if (insertUsuario($arrayDados))
@@ -70,6 +66,49 @@ function inserirUsuario($dadosUsuario)
     }
 }
 
+// Função para buscar um usuário pelo ID
+function buscaUsuario($id) {
+    
+}
+
+// Função para atualizar categoria
+function atualizarUsuario($dados, $idUsuario) {
+    // Validação para verificar se o objeto está vazio
+    if (!empty($dados)) {
+        // Validação para verificar se os itens obrigatórios no BD estão preenchidos
+        // Nome
+        if (!empty($dados['txtCategoria']) && is_numeric($idUsuario) && !empty($idUsuario)    ) {
+            /**
+             * Criação do array de dados que será encaminhado a model para 
+             * inserção no BD, é importante criar este array conforme
+             * as necessidades de manipulação do BD.
+             * 
+             * OBS.: criar as chaves do Array conforme os nomes dos atributos do BD
+             ****************************************************************************/
+
+            $arrayDados = array(
+                "id"   => $idUsuario,
+                "nome" => $dados['txtCategoria']
+            );
+
+            //  Import do arquivo de modelagem para manipular o BD
+            require_once('model/bd/categoria.php');
+
+            // Chamando a função para inserir contato no BD
+            if (updateCategoria($arrayDados))
+                return true;
+            else
+                return array(
+                    'idErro'   => 1,
+                    'message'  => 'Não foi possível inserir os dados no Banco de Dados.'
+                );
+        } else
+            return array(
+                'idErro'   => 2,
+                'message'  => 'Erro. Há campos obrigatórios que necessitam ser preenchidos.'
+            );
+    }
+}
 
 
 ?>
