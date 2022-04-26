@@ -14,6 +14,7 @@ if (session_status()) {
     $email = $_SESSION['dadosUsuario']['email'];
     $senha = $_SESSION['dadosUsuario']['senha'];
     $data_nascimento = $_SESSION['dadosUsuario']['data_nascimento'];
+    $sexo = $_SESSION['dadosUsuario']['sexo'];
 
     $form = 'router.php?component=usuarios&action=editar&id=' . $id;
 
@@ -146,10 +147,12 @@ if (session_status()) {
 
           <!-- Sexo -->
           <div class="form-group sexo">
-            <h2>Sexo:</h2>
+            <span>Sexo:</span>
 
-            <label><input type="radio" name="rdoSexo" value="M"/>Masculino</label>
-            <label><input type="radio" name="rdoSexo" value="F"/>Feminino</label>
+            <div class="input-sexo">
+              <label><input type="radio" name="rdoSexo" value="M" <?= !isset($sexo) ||  strcmp($sexo, 'M') ? 'checked' : null ?>/>Masculino</label>
+              <label><input type="radio" name="rdoSexo" value="F" <?= isset($sexo) && strcmp($sexo, 'F') ? 'checked' : null ?>/>Feminino</label>
+            </div>
           </div>
           <!-- // Sexo -->
         </div>

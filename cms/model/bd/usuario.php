@@ -23,13 +23,15 @@ function insertUsuario($dadosUsuario)
         telefone,
         email,
         senha,
-        data_nascimento
+        data_nascimento,
+        sexo
     ) values(
         '" . $dadosUsuario['nome'] . "',
         '" . $dadosUsuario['telefone'] . "',
         '" . $dadosUsuario['email'] . "',
         '" . $dadosUsuario['senha'] . "',
-        '" . $dadosUsuario['data_nascimento'] . "'
+        '" . $dadosUsuario['data_nascimento'] . "',
+        '" . $dadosUsuario['sexo'] . "'
     )";
 
 
@@ -84,7 +86,8 @@ function updateUsuario($dados) {
         telefone        = '" . $dados['telefone'] . "',
         senha           = '" . $dados['senha']  . "',
         email           = '" . $dados['email']    . "',
-        data_nascimento = '" . $dados['data_nascimento'] . "'
+        data_nascimento = '" . $dados['data_nascimento'] . "',
+        sexo            = '" . $dados['sexo'] . "'
         where id_usuario = " . $dados['id'];
 
     // Executando script no BD
@@ -127,7 +130,8 @@ function selectUsuarioById($id) {
                 "telefone"             => $rsDados['telefone'],
                 "email"                => $rsDados['email'],
                 "senha"                => $rsDados['senha'],
-                "data_nascimento"      => $rsDados['data_nascimento']
+                "data_nascimento"      => $rsDados['data_nascimento'],
+                "sexo"                 => $rsDados['sexo']
             );
 
         }

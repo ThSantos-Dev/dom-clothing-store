@@ -44,7 +44,8 @@ function inserirUsuario($dadosUsuario)
                 "telefone"             => $dadosUsuario['txtTelefone'],
                 "email"                => $dadosUsuario['txtEmail'],
                 "senha"                => $dadosUsuario['txtSenha'],
-                "data_nascimento"      => $dadosUsuario['dateNascimento']
+                "data_nascimento"      => $dadosUsuario['dateNascimento'],
+                "sexo"                 => $dadosUsuario['rdoSexo'] 
             );
 
             //  Import do arquivo de modelagem para manipular o BD
