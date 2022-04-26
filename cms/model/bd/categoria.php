@@ -141,7 +141,7 @@ function updateCategoria($dados) {
     // Declaração de variável  oara utilizar no return dessa função
     $statusResposta = (bool) false;
 
-    // Script SQL para inserir os dados no BD
+    // Script SQL para atualizar os dados no BD
     $sql = "
         update tbl_categorias set
             nome= '" . $dados['nome'] .  "'

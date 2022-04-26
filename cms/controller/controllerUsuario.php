@@ -66,18 +66,55 @@ function inserirUsuario($dadosUsuario)
     }
 }
 
+//  Função para realizar a exclusão do usuário (excluir)
+function excluirUsuario($id) {
+    // Validação para verificar se o $id contém um número VÁLIDO.
+    if($id != 0 && !empty($id) && is_numeric($id)){
+        // Import do arquivo de modelagem para manipular o BD.
+        require_once('model/bd/usuario.php');
+        
+        // Chama a função da models e valida se o retorno foi true ou false
+        if(deleteUsuario($id))
+            return true;
+        else 
+            return array('idErro'   => 3,
+                        'message'  => 'O banco de dados não pode excluir o registro.');
+    } else {
+        return array('idErro'   => 4,
+                     'message'  => 'Não é possível excluir um registro sem informar um ID válido.');
+    }
+}
+
 // Função para buscar um usuário pelo ID
-function buscaUsuario($id) {
-    
+function buscarUsuario($id) {
+// Validação para verificar se o $id contém um número VÁLIDO.
+    if($id != 0 && !empty($id) && is_numeric($id)) {
+        // Import do arquivo de modelagem para manipular o BD.
+        require_once('model/bd/usuario.php');
+
+        // Chama a função que vai buscar no BD
+        $dados = selectUsuarioById($id);
+
+        // Valida se existem dados para serem devolvidos
+        if(!empty($dados))
+            return $dados;
+        else
+            return false;
+    } else 
+        return array( 'idErro' => 4,
+                      'message'  => 'Não é possível buscar um registro sem informar um ID válido.'     );
+
+        
 }
 
 // Função para atualizar categoria
-function atualizarUsuario($dados, $idUsuario) {
-    // Validação para verificar se o objeto está vazio
-    if (!empty($dados)) {
+function atualizarUsuario($dadosUsuario, $idUsuario) {
+     // Validação para verificar se o objeto está vazio
+     if (!empty($dadosUsuario)) {
+
         // Validação para verificar se os itens obrigatórios no BD estão preenchidos
-        // Nome
-        if (!empty($dados['txtCategoria']) && is_numeric($idUsuario) && !empty($idUsuario)    ) {
+        // Nome e email, data de nascimento
+        if (!empty($dadosUsuario['txtNome']) && !empty($dadosUsuario['txtEmail']) && !empty($dadosUsuario['dateNascimento'])) {
             /**
              * Criação do array de dados que será encaminhado a model para 
              * inserção no BD, é importante criar este array conforme
@@ -87,20 +124,24 @@ function atualizarUsuario($dados, $idUsuario) {
              ****************************************************************************/
 
             $arrayDados = array(
-                "id"   => $idUsuario,
-                "nome" => $dados['txtCategoria']
+                "id"                   => $idUsuario,
+                "nome"                 => $dadosUsuario['txtNome'],
+                "telefone"             => $dadosUsuario['txtTelefone'],
+                "email"                => $dadosUsuario['txtEmail'],
+                "senha"                => $dadosUsuario['txtSenha'],
+                "data_nascimento"      => $dadosUsuario['dateNascimento']
             );
 
             //  Import do arquivo de modelagem para manipular o BD
-            require_once('model/bd/categoria.php');
+            require_once('model/bd/usuario.php');
 
             // Chamando a função para inserir contato no BD
-            if (updateCategoria($arrayDados))
+            if (updateUsuario($arrayDados))
                 return true;
             else
                 return array(
                     'idErro'   => 1,
-                    'message'  => 'Não foi possível inserir os dados no Banco de Dados.'
+                    'message'  => 'Não foi possível atualizar os dados no Banco de Dados.'
                 );
         } else
             return array(

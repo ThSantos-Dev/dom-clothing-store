@@ -215,6 +215,79 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
                 }
             } 
 
+            elseif($action == 'DELETAR'){
+                // Resgatando o ID do registro que deverá ser exluído.
+                $idUsuario = $_GET['id'];
+
+                // Chamando a função de exluir o registro na Controller
+                $resposta = excluirUsuario($idUsuario);
+                    // Valida o tipo de dados que a controller retornou
+                    if(is_bool($resposta)){
+                    // Verificando se p retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Excluido com Sucesso!')
+                            window.location.href = 'dashboard-usuarios.php'
+                            </script>";
+                    
+                // Se o retorno for um array significa houve erro no processo de inserção 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+            }
+
+            elseif($action == 'BUSCAR'){
+                // Resgatando o ID do registro que deverá ser buscado.
+                $idUsuario = $_GET['id'];
+
+                // Chamando a função de buscar o registro na Controller
+                $dados = buscarUsuario($idUsuario);
+
+                // Ativa a utilização de variáveis de sessão no servidor
+                session_start();
+
+                // Guarda em uma varíavel de sessão os dados que o BD retornou para a busca do ID
+                // Obs.: essa variável de sessão será utilizada na index.php, para colocar os DADOS
+                // nas caixas de texto
+                $_SESSION['dadosUsuario'] = $dados;
+
+                // Importa o arquivo de dashboard-usuario.php, renderizando-o na tela
+                /**
+                 * Utilizando o require, iremos apenas importar a tela da index, assim, não 
+                 * havendo um novo carregamento da página
+                 */
+                require_once('dashboard-usuarios.php');
+            }
+
+            elseif($action == 'EDITAR') {
+                // Recebe o ID que foi encaminhado pelo action do form pela URL
+                $idUsuario = $_GET['id'];
+
+                // Chama a função de editar na controller
+                $resposta = atualizarUsuario($_POST, $idUsuario);
+                // Valida o tipo de dados que a controller retornou
+                if(is_bool($resposta)){
+                    // Verificando se o retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Atualizado com Sucesso!')
+                            window.location.href = 'dashboard-usuarios.php'
+                            </script>";
+                    
+                // Se o retorno for um array significa houve erro no processo de atualização 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+
+
+            }
+
             break;
         default:
             break;
