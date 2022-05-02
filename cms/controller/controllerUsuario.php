@@ -130,6 +130,7 @@ function atualizarUsuario($dadosUsuario, $idUsuario) {
                 "telefone"             => $dadosUsuario['txtTelefone'],
                 "email"                => $dadosUsuario['txtEmail'],
                 "senha"                => $dadosUsuario['txtSenha'],
+                "sexo"                 => $dadosUsuario['rdoSexo'],
                 "data_nascimento"      => $dadosUsuario['dateNascimento']
             );
 

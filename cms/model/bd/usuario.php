@@ -34,7 +34,6 @@ function insertUsuario($dadosUsuario)
         '" . $dadosUsuario['sexo'] . "'
     )";
 
-
     // Chamada da função mysqli_query($conexao, $sql) que executa um script no BD
     if (mysqli_query($conexao, $sql)) {
         // Validação para verificar se uma linha foi afetada (acrescentada) no BD

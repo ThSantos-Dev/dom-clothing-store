@@ -260,6 +260,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') 
                  * havendo um novo carregamento da página
                  */
                 require_once('dashboard-usuarios.php');
+                echo "
+                    <script defer>
+                        setTimeout(() => {
+                        document.getElementById('btnModal').click()}, 1000)
+                    </script>
+                ";
             }
 
             elseif($action == 'EDITAR') {

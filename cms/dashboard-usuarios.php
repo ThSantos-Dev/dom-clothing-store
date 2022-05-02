@@ -42,100 +42,30 @@ if (session_status()) {
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard-usuarios.css" />
   <link rel="stylesheet" type="text/css" href="css/dashboard-contatos.css" />
+
+  <!-- JS Imports -->
+  <script src="js/usuarios/main.js" defer type="module"></script>
 </head>
 
 <body>
-  <!-- Header -->
-  <header>
-    <div class="header-content container">
-      <!-- Title -->
-      <div class="header-content-title">
-        <h1>
-          <span>CMS</span>
-          DOM - Desvende o mundo!
-        </h1>
-        <h2>Gerenciamneto de Conteúdo do Site</h2>
-      </div>
-      <!-- // Title -->
-
-      <!-- Logo -->
-      <div class="header-content-logo">
-        <img src="assets/img/icon/logo.png" alt="Logo" />
-      </div>
-      <!-- // Logo -->
-    </div>
-  </header>
-  <!-- // Header -->
-
-  <!-- Dashboard -->
-  <section class="dashboard container">
-    <!-- Actions container -->
-    <div class="dashboard-content-actions-container">
-      <!-- Action - Adm de Produtos -->
-      <div class="dashboard-content-action">
-        <a href="">
-          <img src="assets/img/icon/box.png" alt="" />
-          <span>Adm. de Produtos</span>
-        </a>
-      </div>
-      <!-- // Action - Adm de Produtos -->
-
-      <!-- Action - Adm de Produtos -->
-      <div class="dashboard-content-action">
-        <a href="dashboard-categorias.php">
-          <img src="assets/img/icon/lista-de-controle.png" alt="" />
-          <span>Adm. de Categorias</span>
-        </a>
-      </div>
-      <!-- // Action - Adm de Produtos -->
-
-      <!-- Action - Adm de Produtos -->
-      <div class="dashboard-content-action">
-        <a href="dashboard-contatos.php">
-          <img src="assets/img/icon/contact-form.png" alt="" />
-          <span>Contatos</span>
-        </a>
-      </div>
-      <!-- // Action - Adm de Produtos -->
-
-      <!-- Action - Adm de Produtos -->
-      <div class="dashboard-content-action">
-        <a href="dashboard-usuarios.php">
-          <img src="assets/img/icon/people.png" alt="" />
-          <span>Usuários</span>
-        </a>
-      </div>
-      <!-- // Action - Adm de Produtos -->
-    </div>
-    <!-- // Actions container -->
-
-    <!-- User container -->
-    <div class="dashboard-content-user-container">
-      <!-- User name -->
-      <div class="dashboard-content-user-name">
-        <p>Bem vindo! <span>Thales Santos</span>.</p>
-      </div>
-      <!-- // User name -->
-
-      <!-- User action -->
-      <div class="dashboard-content-user-logout">
-        <img src="assets/img/icon/logout.png" alt="" />
-        <input type="button" value="Logout" />
-      </div>
-      <!-- // User action -->
-    </div>
-    <!-- // User container -->
-  </section>
-  <!-- Dashboard -->
+  <?php
+    require_once('components/header.html');
+  ?>
 
   <!-- Content Area -->
   <section class="content container">
-    <h1 class="section-title">Usuários</h1>
+    <div class="container-title-button">
+      <h1 class="section-title">Usuários</h1>
 
-    <div class="form-container">
+      <div class="button-modal" id="btnModal">
+        <span>Novo usuário</span><i class="fa-solid fa-plus"></i>
+      </div>
+    </div>
+
+    <div class="form-container" id="formCadastroUsuario">
       <!-- Form  -->
       <form action="<?= $form ?>" method="post">
-        <h2>Cadastro de Usuários</h2>
+        <h2>Informações do Usuário</h2>
 
         <div class="form-group-row">
           <!-- Name -->
@@ -195,6 +125,7 @@ if (session_status()) {
         <!-- // Password -->
 
         <div class="form-group-button">
+          <button type="submit" value="cancelar" id="btnCancelar">cancelar</button>
           <button type="submit" value="salvar">salvar</button>
         </div>
       </form>
@@ -213,7 +144,7 @@ if (session_status()) {
           <th>Opções</th>
         </thead>
 
-        <tbody>
+        <tbody id="clientsInfo">
           <?php
           // Import do arquivo da controller para solicitar a listagem dos dados
           require_once('controller/controllerUsuario.php');
@@ -232,7 +163,7 @@ if (session_status()) {
                   <a onclick="return confirm('Deseja realmente excluir o contato: <?= $item['nome'] ?>')" href="router.php?component=usuarios&action=deletar&id=<?= $item['id'] ?>">
                     <i class="fa-solid fa-trash-can" title="Excluir"></i>
                   </a>
-                  <a href="router.php?component=usuarios&action=buscar&id=<?= $item['id'] ?>">
+                  <a href="router.php?component=usuarios&action=buscar&id=<?= $item['id'] ?>" id="editar-<?= $item['id']?>">
                     <i class="fa-solid fa-pen-to-square" title="Editar"></i>
                   </a>
                   <i class="fa-solid fa-eye" title="Visualizar"></i>

@@ -8,13 +8,50 @@
 
 }
 
+.container-title-button {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.button-modal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    font-size: 1.2rem;
+    color: #fff;
+
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+    background-color: #111;
+
+    transition: all 0.3s;
+}
+
+.button-modal:hover {
+    color: #111;
+
+    cursor: pointer;
+
+    border: solid 1px #111;
+    background-color: #fff;
+}
+
+
 
 .form-container {
     width: 100%;
 
-    padding-top: 60px;
+    display: none;
 
+    padding-top: 60px;
     margin-bottom: 80px;
+}
+
+.form-container.active {
+    display: block;
 }
 
 form {
@@ -113,6 +150,7 @@ form h2 {
 
     display: flex;
     justify-content: flex-end;
+    gap: 40px;
 }
 
 .form-group-button button {
@@ -131,7 +169,8 @@ form h2 {
 
 .form-group-button button:hover {
     cursor: pointer;
+    color: #111;
 
-    font-size: 1.7rem;
-    padding: 15px 40px;
+    outline: solid 1px #111;
+    background-color: #fff;
 }
