@@ -12,7 +12,6 @@ if (session_status()) {
     $nome = $_SESSION['dadosUsuario']['nome'];
     $telefone = $_SESSION['dadosUsuario']['telefone'];
     $email = $_SESSION['dadosUsuario']['email'];
-    $senha = $_SESSION['dadosUsuario']['senha'];
     $data_nascimento = $_SESSION['dadosUsuario']['data_nascimento'];
     $sexo = $_SESSION['dadosUsuario']['sexo'];
 
@@ -114,12 +113,12 @@ if (session_status()) {
         <div class="form-group-row">
           <div class="form-group">
             <label for="txtSenha">Senha:</label>
-            <input type="password" name="txtSenha" placeholder="Insira uma senha..." required value="<?= isset($senha) ? $senha : null  ?>" />
+            <input type="password" name="txtSenha" placeholder="Insira uma senha..." required value="" />
           </div>
 
           <div class="form-group">
             <label for="txtConfirmarSenha">Confirme sua senha:</label>
-            <input type="password" name="txtConfirmarSenha" placeholder="Confirme sua senha..." required value="<?= isset($senha) ? $senha : null  ?>" />
+            <input type="password" name="txtConfirmarSenha" placeholder="Confirme sua senha..." required value="" />
           </div>
         </div>
         <!-- // Password -->

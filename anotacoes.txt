@@ -1,0 +1,21 @@
+# Nome dos campos do formulário
+
+### Imagens laterais
+        fileFoto1
+        fileFoto2
+        fileFoto3
+        fileFoto4
+
+### Imagem Principal
+        fileFotoMain
+
+
+# Dados
+    txtTitulo
+    txtPreco
+    txtDesconto
+    txtQuantidade
+
+    rdoDestaque
+    
+    sltCategoria

@@ -28,7 +28,7 @@ CREATE TABLE `tbl_categorias` (
   `id_categoria` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,35 @@ INSERT INTO `tbl_contatos` VALUES (2,'mel santos','11 40028922','melsantos@gmail
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_produtos`
+--
+
+DROP TABLE IF EXISTS `tbl_produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_produtos` (
+  `id_produto` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(256) NOT NULL,
+  `preco` double NOT NULL,
+  `quantidade` int NOT NULL,
+  `desconto` double DEFAULT NULL,
+  `destaque` tinyint DEFAULT NULL,
+  `foto_principal` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_produto`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_produtos`
+--
+
+LOCK TABLES `tbl_produtos` WRITE;
+/*!40000 ALTER TABLE `tbl_produtos` DISABLE KEYS */;
+INSERT INTO `tbl_produtos` VALUES (1,'curso completo de react',149.9,45,10,1,'react.png'),(2,'curso completo de angular',249.9,15,17,1,'angular.png'),(3,'curso completo de vue',49.9,32,29,0,'angular.png'),(4,'curso completo de vue',49.9,32,29,0,'vue.png'),(5,'curso completo de vue',49.9,32,29,0,'vue.jpg'),(6,'sadadsadad',3121,43,32,1,'react.png'),(7,'carolina carol a venda',10000000,1,100,0,'react.png');
+/*!40000 ALTER TABLE `tbl_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_usuarios`
 --
 
@@ -83,8 +112,9 @@ CREATE TABLE `tbl_usuarios` (
   `email` varchar(80) NOT NULL,
   `data_nascimento` date NOT NULL,
   `senha` varchar(20) DEFAULT NULL,
+  `sexo` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,9 +123,13 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,'Thales Santos','(11)995234104','thales@gmail.com','2002-11-29','1234');
+INSERT INTO `tbl_usuarios` VALUES (1,'Thales Santos','(11)995234104','thales@gmail.com','2002-11-29','1234',NULL),(2,'thales','2332321','tales@email.com','2022-11-29','dasda sa',NULL),(3,'thales','2332321','tales@email.com','5155-10-15','5asda',NULL),(4,'thales','2332321','tales@email.com','2000-08-05','asdads ',NULL),(5,'sada a','11212','tales@email.com','2005-04-29','dsada asd','');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'db_dom'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -106,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19 13:58:30
+-- Dump completed on 2022-05-06 16:59:27

@@ -19,10 +19,13 @@ let show = true
 export const toggleModal = (idFormContainer) => {
     // Resgantando elementos HTML
     const formContainer = document.getElementById(idFormContainer);
+
+    document.body.style.overflowY = show ? 'hidden' : 'auto'
     
     formContainer.classList.toggle('active', show)
     show = !show
 }
+
 
 
 

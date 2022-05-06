@@ -128,7 +128,6 @@ function selectUsuarioById($id) {
                 "nome"                 => $rsDados['nome'],
                 "telefone"             => $rsDados['telefone'],
                 "email"                => $rsDados['email'],
-                "senha"                => $rsDados['senha'],
                 "data_nascimento"      => $rsDados['data_nascimento'],
                 "sexo"                 => $rsDados['sexo']
             );
