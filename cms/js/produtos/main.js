@@ -15,7 +15,7 @@ document.getElementById('closeModal').addEventListener('click', () =>  toggleMod
 
 
 
-
+toggleModal('modal-container')
 
 
 

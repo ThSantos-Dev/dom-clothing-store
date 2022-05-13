@@ -117,17 +117,33 @@
             </div>
           </div>
 
-          <div class="form-group radios">
-            <h3>Produto em destaque?</h3>
-
-            <div class="form-group-row radios">
-              <div class="form-group radio">
-                <input type="radio" name="rdoDestaque" value="1" id="">
-                <label for="">Sim</label>
+          <div class="form-group-row">
+            <div class="form-group radios">
+              <h3>Produto em destaque?</h3>
+  
+              <div class="form-group-row radios">
+                <div class="form-group radio">
+                  <input type="radio" name="rdoDestaque" value="1" id="rdoDestaqueSim" checked>
+                  <label for="rdoDestaqueSim">Sim</label>
+                </div>
+                <div class="form-group radio">
+                  <input type="radio" name="rdoDestaque" value="0" id="rdoDestaqueNao">
+                  <label for="rdoDestaqueNao">Não</label>
+                </div>
               </div>
-              <div class="form-group radio">
-                <input type="radio" name="rdoDestaque" value="0" id="">
-                <label for="">Não</label>
+            </div>
+  
+            <div class="form-group file-upload">
+              <div class="form-group">
+                <label>upload imagem principal
+                  <input type="file" accept="image/*" name="" id="singleImage" />
+                </label>
+              </div>
+  
+              <div class="form-group">
+                <label>upload imagens laterais
+                  <input type="file" multiple="multiple" accept="image/*" name="fileImages[]" id="multipleImages" />
+                </label>
               </div>
             </div>
           </div>
@@ -157,47 +173,47 @@
 
       <tbody>
 
-      <?php
+        <?php
         // Import da função que retorna todos os produtos
         require_once('controller/controllerProduto.php');
 
         $listProdutos = listaProdutos();
 
-        if(count($listProdutos) > 0) {
-          foreach($listProdutos as $item) {
-      
-      ?>
-        <tr>
-          <td>
-            <img src="uploads/<?= $item['fotoPrincipal']?>"/>
-          </td>
-          <td><?= $item['titulo']?></td>
-          <td>alguma ai</td>
-          <td>
-            <div class="preco">
-              <span>R$ <?= $item['preco']?></span>
+        if (count($listProdutos) > 0) {
+          foreach ($listProdutos as $item) {
 
-              <div class="status">
-                <i class="fa-solid fa-tag <?= $item['desconto'] > 0 ? 'green' : 'red' ?>" title="Produto com desconto."></i>
-                <i class="fa-solid fa-award <?= $item['destaque'] ? 'green' : 'red' ?>" title="Produto em destaque."></i>
-              </div>
-            </div>
-          </td>
-          <td class="acoes">
-            <a onclick="return confirm('Deseja realmente excluir o produto: <?= $item['titulo'] ?>')" href="router.php?component=produtos&action=deletar&id=<?= $item['id'] ?>">
-              <i class="fa-solid fa-trash-can" title="Excluir"></i>
-            </a>
-            <a href="router.php?component=produtos&action=buscar&id=<?= $item['id'] ?>" id="editar-<?= $item['id'] ?>">
-              <i class="fa-solid fa-pen-to-square" title="Editar"></i>
-            </a>
-            <i class="fa-solid fa-eye" title="Visualizar"></i>
-          </td>
-        </tr>
+        ?>
+            <tr>
+              <td>
+                <img src="uploads/<?= $item['fotoPrincipal'] ?>" />
+              </td>
+              <td><?= $item['titulo'] ?></td>
+              <td>alguma ai</td>
+              <td>
+                <div class="preco">
+                  <span>R$ <?= $item['preco'] ?></span>
 
-      <?php
+                  <div class="status">
+                    <i class="fa-solid fa-tag <?= $item['desconto'] > 0 ? 'green' : 'red' ?>" title="Produto com desconto."></i>
+                    <i class="fa-solid fa-award <?= $item['destaque'] ? 'green' : 'red' ?>" title="Produto em destaque."></i>
+                  </div>
+                </div>
+              </td>
+              <td class="acoes">
+                <a onclick="return confirm('Deseja realmente excluir o produto: <?= $item['titulo'] ?>')" href="router.php?component=produtos&action=deletar&id=<?= $item['id'] ?>">
+                  <i class="fa-solid fa-trash-can" title="Excluir"></i>
+                </a>
+                <a href="router.php?component=produtos&action=buscar&id=<?= $item['id'] ?>" id="editar-<?= $item['id'] ?>">
+                  <i class="fa-solid fa-pen-to-square" title="Editar"></i>
+                </a>
+                <i class="fa-solid fa-eye" title="Visualizar"></i>
+              </td>
+            </tr>
+
+        <?php
           }
         }
-      ?>
+        ?>
 
       </tbody>
     </table>
