@@ -179,6 +179,9 @@ table tr td > img {
 
 .modal-images > label > img {
     width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    
+    object-fit: cover;
 }
 
 input[type="file"] {

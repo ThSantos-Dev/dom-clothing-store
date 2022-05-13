@@ -2,6 +2,8 @@ export const showPreview = event => {
     const container = event.target.parentNode
     const [input, image] = container.children
 
+    console.log(container.children)
+
     input.onchange = () => {
       const [file] = input.files
 
@@ -37,6 +39,7 @@ export const showPreviewMain = (idImage, idInput) => {
  */
 export const uploadMultiplePreview = (imageSelector, idFileInput) => {
   const imageTags = document.querySelectorAll(imageSelector)
+  console.log(imageTags)
 
   const imagesFile = document.getElementById(idFileInput)
   

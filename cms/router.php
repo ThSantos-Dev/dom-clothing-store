@@ -281,9 +281,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
             break;
 
         case 'PRODUTOS':
+            // Import da controller de Produtos
+            require_once('controller/controllerProduto.php');
+
             if ($action == 'INSERIR') {
-                // Import da controller de Produtos
-                require_once('controller/controllerProduto.php');
 
                 // Encapsulando $_POST e $_FILES para enviar para a controller
                 $arrayDados = array(
@@ -309,6 +310,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                         window.history.back()
                     </script>";
                 }
+            }
+            elseif($action == 'BUSCAR') {
+                /********************
+                 * Recebe o ID do registro que deverá ser editado,
+                 * que foi enviado pela url no link da imagem
+                 * do editar que foi acionado na dashboard-categorias.php
+                 ***************************/
+                $idProduto = $_GET['id'];
+
+                // Chama a função de buscar na Controller
+                $dados = buscarProduto($idProduto);
+
+                // Ativa a utilização de variáveis de SESSÃO no SERVIDOR
+                session_start();
+
+                // Guarda em uma varíavel de sessão os dados que o BD retornou para a busca do ID
+                // Obs.: essa variável de sessão será utilizada na index.php, para colocar os DADOS
+                // nas caixas de texto
+                $_SESSION['dadosProduto'] = $dados;
+
+                /**
+                 * Utilizando o header, o navegador abre um nova instância da 
+                 * página indicada
+                 * 
+                 * Utilizando o header, também poderemos chamar a index.php, porém
+                 * haverá uma ação de carregamento no navegador (piscando a tela)
+                 * header('location: index.php')
+                 */
+
+
+                // Importa o arquivo de dashboard-categorias.php, renderizando-o na tela
+                /**
+                 * Utilizando o require, iremos apenas importar a tela da index, assim, não 
+                 * havendo um novo carregamento da página
+                 */
+                require_once('dashboard-produtos.php');
             }
             break;
         default:

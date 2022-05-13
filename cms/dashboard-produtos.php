@@ -1,3 +1,33 @@
+<?php
+require_once('modules/config.php');
+
+// Alteração dinamica da url para que o mesmo form possa atualizar um dado
+$form = 'router.php?component=produtos&action=inserir';
+
+// Valida se a utilização de variáveis de sessão esta ativa no servidor
+if (session_status()) {
+  // Valida se a variavel de sessao dadosProduto não esta vazia
+  if (!empty($_SESSION['dadosProduto'])) {
+
+    $id            = $_SESSION['dadosProduto']['id'];
+    $titulo        = $_SESSION['dadosProduto']['titulo'];
+    $preco         = $_SESSION['dadosProduto']['preco'];
+    $destaque      = $_SESSION['dadosProduto']['destaque'];
+    $desconto      = $_SESSION['dadosProduto']['desconto'];
+    $categoria     = $_SESSION['dadosProduto']['categoria'];
+    $fotoPrincipal = $_SESSION['dadosProduto']['fotoPrincipal'];
+
+    
+
+    $form = 'router.php?component=produtos&action=editar&id=' . $id;
+
+    // Destrói uma variável de sessão da memoria do servidor
+    unset($_SESSION['dadosProduto']);
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -38,7 +68,7 @@
     <!-- Modal -->
     <div id="modal-container">
       <!-- Form -->
-      <form action="router.php?component=produtos&action=inserir" method="post" enctype="multipart/form-data">
+      <form action="<?= $form?>" method="post" enctype="multipart/form-data">
         <i class="fa-solid fa-xmark" id="closeModal" title="Fechar"></i>
 
         <!-- Images Preview -->
@@ -74,7 +104,7 @@
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFotoMain" accept="image/*" id="fileFotoMain" />
-                <img src="assets/img/icon/upload-image.png" alt="" id="previewFotoMain" />
+                <img src="<?= $fotoPrincipal ? PATH_FILE_UPLOAD . $fotoPrincipal : 'assets/img/icon/upload-image.png'?>" alt="" id="previewFotoMain" />
               </label>
             </div>
           </div>
@@ -87,27 +117,36 @@
 
           <div class="form-group">
             <label for="txtTitulo">Título:</label>
-            <input type="text" required name="txtTitulo" placeholder="Digite seu nome completo..." value="" />
+            <input type="text" required name="txtTitulo" placeholder="Digite seu nome completo..." value="<?= $titulo ? $titulo : null?>" />
           </div>
 
           <div class="form-group-row">
             <div class="form-group">
               <label for="txtPreco">Preço:</label>
-              <input type="number" name="txtPreco" id="" placeholder="R$ 79,90" />
-            </div>
+              <input type="number" step="0.1" name="txtPreco" id="" placeholder="R$ 79,90" value="<?= $preco ? $preco : null?>" />
+            </div>  
             <div class="form-group">
               <label for="txtDesconto">Desconto (%):</label>
-              <input type="number" max="100" name="txtDesconto" id="" placeholder="10%" />
+              <input type="number" max="100" name="txtDesconto" id="" placeholder="10%" value="<?= $preco ? $preco : null?>" />
             </div>
           </div>
 
           <div class="form-group-row">
             <div class="form-group">
               <label for="sltCategoria">Categoria:</label>
-              <select name="sltCategoria" id="">
+              <select name="sltCategoria" id="" required>
                 <option value="" selected>selecione uma categoria</option>
-                <option value="a">a</option>
-                <option value="b">b</option>
+                <?php
+                  // Import do arquivo que lista todas as categorias
+                  require_once('controller/controllerCategoria.php');
+                  if($listCategorias = listaCategorias()) {
+                    // Imprimendo na tela todas as categorias
+                    foreach($listCategorias as $item){
+                      echo '<option value="'. $item['id'] .'">'. $item['nome'] . '</option>';
+                    }
+                  }
+                
+                ?>
               </select>
             </div>
 
@@ -188,7 +227,7 @@
                 <img src="uploads/<?= $item['fotoPrincipal'] ?>" />
               </td>
               <td><?= $item['titulo'] ?></td>
-              <td>alguma ai</td>
+              <td><?= $item['categoria']?></td>
               <td>
                 <div class="preco">
                   <span>R$ <?= $item['preco'] ?></span>
