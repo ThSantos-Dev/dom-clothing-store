@@ -10,7 +10,7 @@
  * Versão: 1.0
  *************************************************************************************/
 
-$action = (string) null;
+ $action = (string) null;
 $component = (string) null;
 
 //  Validação para verificar se a requisição é um POST ou GET de um formulário
@@ -346,6 +346,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                  * havendo um novo carregamento da página
                  */
                 require_once('dashboard-produtos.php');
+            }
+            elseif($action == 'EDITAR') {
+                // Recebendo o ID do registro e Nome da foto principal
+                $arrayDados = array(
+                    'id'            => $_GET['id'],
+                    'dados'         => $_POST,
+                    'arquivos'      => $_FILES,
+                    'fotoPrincipal' => $_GET['fotoPrincipal']
+                );
+
+                $resposta = atualizaProduto($arrayDados);
+
+                // Valida o tipo de daos que a controller retornou
+                if(is_bool($resposta)){
+                    // Verificando se o retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Atualizado com Sucesso!')
+                            window.location.href = 'dashboard-produtos.php'
+                        </script>";
+                
+                // Se o retorno for um array significa houve erro no processo de inserção 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+
+            }
+            elseif($action == 'DELETAR') {
+                // Recebendo id do produto e nome da foto 
+                $arrayDados = array(
+                    'id' => $_GET['id'],
+                    'idFotoPrincipal' => $_GET['idFotoPrincipal']
+                );
+
+                // Chama a função de excluir da controller
+                $resposta = excluirProduto($arrayDados);
+
+                // Valida o tipo de daos que a controller retornou
+                if(is_bool($resposta)){
+                    // Verificando se o retorno foi verdadeiro
+                    if($resposta)
+                    echo "<script>
+                            alert('Registro Excluido com Sucesso!')
+                            window.location.href = 'dashboard-produtos.php'
+                         </script>";
+                  
+                // Se o retorno for um array significa houve erro no processo de inserção 
+                } elseif(is_array($resposta)){
+                    echo "<script>
+                            alert('".$resposta['message']."')
+                            window.history.back()
+                        </script>";
+                }
+
             }
             break;
         default:

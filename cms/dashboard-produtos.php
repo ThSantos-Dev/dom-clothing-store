@@ -4,22 +4,26 @@ require_once('modules/config.php');
 // Alteração dinamica da url para que o mesmo form possa atualizar um dado
 $form = 'router.php?component=produtos&action=inserir';
 
+$id_categoria = 0;
+$destaque = 0;
+$fotoPrincipal = (string) null;
+
 // Valida se a utilização de variáveis de sessão esta ativa no servidor
 if (session_status()) {
   // Valida se a variavel de sessao dadosProduto não esta vazia
   if (!empty($_SESSION['dadosProduto'])) {
 
-    $id            = $_SESSION['dadosProduto']['id'];
+    $id_produto    = $_SESSION['dadosProduto']['id_produto'];
     $titulo        = $_SESSION['dadosProduto']['titulo'];
     $preco         = $_SESSION['dadosProduto']['preco'];
+    $quantidade    = $_SESSION['dadosProduto']['quantidade'];
     $destaque      = $_SESSION['dadosProduto']['destaque'];
     $desconto      = $_SESSION['dadosProduto']['desconto'];
     $categoria     = $_SESSION['dadosProduto']['categoria'];
+    $id_categoria  = $_SESSION['dadosProduto']['id_categoria'];
     $fotoPrincipal = $_SESSION['dadosProduto']['fotoPrincipal'];
 
-    
-
-    $form = 'router.php?component=produtos&action=editar&id=' . $id;
+    $form = "router.php?component=produtos&action=editar&id=$id_produto&fotoPrincipal=$fotoPrincipal";
 
     // Destrói uma variável de sessão da memoria do servidor
     unset($_SESSION['dadosProduto']);
@@ -68,9 +72,8 @@ if (session_status()) {
     <!-- Modal -->
     <div id="modal-container">
       <!-- Form -->
-      <form action="<?= $form?>" method="post" enctype="multipart/form-data">
+      <form action="<?= $form ?>" method="post" enctype="multipart/form-data">
         <i class="fa-solid fa-xmark" id="closeModal" title="Fechar"></i>
-
         <!-- Images Preview -->
         <div class="modal-images-preview">
           <div class="modal-images-lateral">
@@ -104,7 +107,7 @@ if (session_status()) {
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFotoMain" accept="image/*" id="fileFotoMain" />
-                <img src="<?= $fotoPrincipal ? PATH_FILE_UPLOAD . $fotoPrincipal : 'assets/img/icon/upload-image.png'?>" alt="" id="previewFotoMain" />
+                <img src="<?= $fotoPrincipal ? PATH_FILE_UPLOAD . $fotoPrincipal : 'assets/img/icon/upload-image.png' ?>" alt="" id="previewFotoMain" />
               </label>
             </div>
           </div>
@@ -117,17 +120,17 @@ if (session_status()) {
 
           <div class="form-group">
             <label for="txtTitulo">Título:</label>
-            <input type="text" required name="txtTitulo" placeholder="Digite seu nome completo..." value="<?= $titulo ? $titulo : null?>" />
+            <input type="text" required name="txtTitulo" placeholder="Digite seu nome completo..." value="<?= isset($titulo) ? $titulo : null ?>" />
           </div>
 
           <div class="form-group-row">
             <div class="form-group">
               <label for="txtPreco">Preço:</label>
-              <input type="number" step="0.1" name="txtPreco" id="" placeholder="R$ 79,90" value="<?= $preco ? $preco : null?>" />
-            </div>  
+              <input type="number" step="0.1" name="txtPreco" id="" placeholder="R$ 79,90" value="<?= $preco ? $preco : null ?>" />
+            </div>
             <div class="form-group">
               <label for="txtDesconto">Desconto (%):</label>
-              <input type="number" max="100" name="txtDesconto" id="" placeholder="10%" value="<?= $preco ? $preco : null?>" />
+              <input type="number" max="100" name="txtDesconto" id="" placeholder="10%" value="<?= $desconto ? $desconto : null ?>" />
             </div>
           </div>
 
@@ -135,50 +138,51 @@ if (session_status()) {
             <div class="form-group">
               <label for="sltCategoria">Categoria:</label>
               <select name="sltCategoria" id="" required>
-                <option value="" selected>selecione uma categoria</option>
+                <option value="">selecione uma categoria</option>
                 <?php
-                  // Import do arquivo que lista todas as categorias
-                  require_once('controller/controllerCategoria.php');
-                  if($listCategorias = listaCategorias()) {
-                    // Imprimendo na tela todas as categorias
-                    foreach($listCategorias as $item){
-                      echo '<option value="'. $item['id'] .'">'. $item['nome'] . '</option>';
-                    }
+                // Import do arquivo que lista todas as categorias
+                require_once('controller/controllerCategoria.php');
+                if ($listCategorias = listaCategorias()) {
+                  // Imprimendo na tela todas as categorias
+                  foreach ($listCategorias as $item) {
+                ?>  
+                  <option value="<?= $item['id_categoria']?>" <?= $item['id_categoria'] == $id_categoria ? 'selected' : null ?>><?= $item['nome']?></option>
+                <?php
                   }
-                
+                }
                 ?>
               </select>
             </div>
 
             <div class="form-group">
               <label for="">Quantidade:</label>
-              <input type="number" name="txtQuantidade" id="" placeholder="27 unidades" />
+              <input type="number" name="txtQuantidade" id="" placeholder="27 unidades" value="<?= $quantidade ? $quantidade : null?>" />
             </div>
           </div>
 
           <div class="form-group-row">
             <div class="form-group radios">
               <h3>Produto em destaque?</h3>
-  
+
               <div class="form-group-row radios">
                 <div class="form-group radio">
-                  <input type="radio" name="rdoDestaque" value="1" id="rdoDestaqueSim" checked>
+                  <input type="radio" name="rdoDestaque" value="1" id="rdoDestaqueSim" <?= $destaque == 1 ? "checked" : null ?>>
                   <label for="rdoDestaqueSim">Sim</label>
                 </div>
                 <div class="form-group radio">
-                  <input type="radio" name="rdoDestaque" value="0" id="rdoDestaqueNao">
+                  <input type="radio" name="rdoDestaque" value="0" id="rdoDestaqueNao" <?= $destaque == 0 ? "checked" : null ?>>
                   <label for="rdoDestaqueNao">Não</label>
                 </div>
               </div>
             </div>
-  
+
             <div class="form-group file-upload">
               <div class="form-group">
                 <label>upload imagem principal
                   <input type="file" accept="image/*" name="" id="singleImage" />
                 </label>
               </div>
-  
+
               <div class="form-group">
                 <label>upload imagens laterais
                   <input type="file" multiple="multiple" accept="image/*" name="fileImages[]" id="multipleImages" />
@@ -216,9 +220,7 @@ if (session_status()) {
         // Import da função que retorna todos os produtos
         require_once('controller/controllerProduto.php');
 
-        $listProdutos = listaProdutos();
-
-        if (count($listProdutos) > 0) {
+        if ($listProdutos = listaProdutos()) {
           foreach ($listProdutos as $item) {
 
         ?>
@@ -227,7 +229,7 @@ if (session_status()) {
                 <img src="uploads/<?= $item['fotoPrincipal'] ?>" />
               </td>
               <td><?= $item['titulo'] ?></td>
-              <td><?= $item['categoria']?></td>
+              <td><?= $item['categoria'] ?></td>
               <td>
                 <div class="preco">
                   <span>R$ <?= $item['preco'] ?></span>
@@ -239,10 +241,10 @@ if (session_status()) {
                 </div>
               </td>
               <td class="acoes">
-                <a onclick="return confirm('Deseja realmente excluir o produto: <?= $item['titulo'] ?>')" href="router.php?component=produtos&action=deletar&id=<?= $item['id'] ?>">
+                <a onclick="return confirm('Deseja realmente excluir o produto: <?= $item['titulo'] ?>')" href="router.php?component=produtos&action=deletar&id=<?= $item['id_produto'] ?>">
                   <i class="fa-solid fa-trash-can" title="Excluir"></i>
                 </a>
-                <a href="router.php?component=produtos&action=buscar&id=<?= $item['id'] ?>" id="editar-<?= $item['id'] ?>">
+                <a href="router.php?component=produtos&action=buscar&id=<?= $item['id_produto'] ?>" id="editar-<?= $item['id_produto'] ?>">
                   <i class="fa-solid fa-pen-to-square" title="Editar"></i>
                 </a>
                 <i class="fa-solid fa-eye" title="Visualizar"></i>

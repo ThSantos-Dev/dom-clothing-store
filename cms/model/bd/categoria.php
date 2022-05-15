@@ -56,7 +56,7 @@ function selectAllCategorias() {
             if ($rsDados) {
                 // Cria um array com os dados do BD
                 $arrayDados[$cont] = array(
-                    "id"                    => $rsDados['id_categoria'],
+                    "id_categoria"          => $rsDados['id_categoria'],
                     "nome"                  => $rsDados['nome'],
                 );
 
