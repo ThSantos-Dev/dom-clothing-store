@@ -92,7 +92,7 @@ table tr td > img {
 
 }
 
-#modal-container form{
+#modal-container form:not(form.btn-excluir-imagem){
     display: flex;
     gap: 40px;
 
@@ -336,4 +336,56 @@ input[type=number] {
 
     color: #fff;
     background-color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btns {
+    display: flex;
+    gap: 20px;
+
+    position: absolute;
+    bottom: 20px;
+}
+
+
+form.btn-excluir-imagem button{
+    padding: 20px 40px;
+
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: #000;
+
+    cursor: pointer;
+    border-radius: 20px;
+
+    transition: all 0.3s;
+}
+
+form.btn-excluir-imagem button:hover {
+    color: #000;
+    background-color: #fff;
+    outline: 1px solid #000;
 }

@@ -62,28 +62,53 @@ function selectByIdProduto($id)
     $conexao = conexaoMySQL();
 
     // Script SQL para buscar por ID
-    $sql = "SELECT * FROM tbl_produtos
-             INNER JOIN tbl_categorias ON tbl_produtos.id_categoria = tbl_categorias.id_categoria
-             WHERE tbl_produtos.id_produto = {$id} ORDER BY id_produto DESC";
+    // $sql = "SELECT * FROM tbl_produtos
+    //          INNER JOIN tbl_categorias ON tbl_produtos.id_categoria = tbl_categorias.id_categoria
+    //          WHERE tbl_produtos.id_produto = {$id} ORDER BY id_produto DESC";
 
+    $sql = "SELECT 
+                    tbl_produtos.id_produto, tbl_produtos.titulo, tbl_produtos.preco, tbl_produtos.desconto, tbl_produtos.destaque, tbl_produtos.foto_principal, tbl_produtos.quantidade,
+                    tbl_categorias.id_categoria, tbl_categorias.nome AS nomeCategoria,
+                    tbl_imagens.id_imagem, tbl_imagens.nome AS nomeImagem
+                FROM tbl_produtos
+                    INNER JOIN tbl_imagens ON tbl_imagens.id_produto = {$id} 
+                    INNER JOIN tbl_categorias ON tbl_produtos.id_categoria = tbl_categorias.id_categoria
+            WHERE tbl_produtos.id_produto = {$id};";
 
     // Executando o Script
     $result = mysqli_query($conexao, $sql);
-
+    $imagens = array();
+    $cont = 0;
+    
     if ($result) {
-        if ($rsDados = mysqli_fetch_assoc($result)) {
+        while ($rsDados = mysqli_fetch_assoc($result)) {
+            $auxiliar[0] = $rsDados['nomeImagem'];
+            $auxiliar[1] = $rsDados['id_imagem'];
+            $imagens[$cont] = $auxiliar;
+            
             $arrayDados = array(
-                'id_produto'            => $rsDados['id_produto'],
+                'id_produto'    => $rsDados['id_produto'],
                 'titulo'        => $rsDados['titulo'],
                 'preco'         => $rsDados['preco'],
                 'quantidade' => $rsDados['quantidade'],
                 'destaque'      => $rsDados['destaque'],
                 'desconto'      => $rsDados['desconto'],
-                'categoria'     => $rsDados['nome'],
+                'categoria'     => $rsDados['nomeCategoria'],
                 'id_categoria'  => $rsDados['id_categoria'],
-                'fotoPrincipal' => $rsDados['foto_principal']
+                'fotoPrincipal' => $rsDados['foto_principal'],
+    
+                'imagens' => $imagens
             );
+            $cont++;
         }
+    
+            // echo '<pre>';
+            //     print_r($arrayDados);
+            // echo'</pre>';
+    
+            // die;
+    
+        
 
         // Solicita fechamento da conexão com o BD
         fecharConexaoMySQL($conexao);
@@ -127,6 +152,9 @@ function updateProduto($dadosProduto)
 // Função que insere novo Produto no BD
 function insertProduto($dadosProduto)
 {
+    // Resgatando o array que contém o nome todas as imagens
+    $arrayImagens = $dadosProduto['imagens'];
+
     // Abre conexão com o BD
     $conexao = conexaoMySQL();
 
@@ -152,8 +180,35 @@ function insertProduto($dadosProduto)
             '" . $dadosProduto['foto_principal'] . "')";
 
     if (mysqli_query($conexao, $sql)) {
-        if (mysqli_affected_rows($conexao))
-            $statusResposta = true;
+        if (mysqli_affected_rows($conexao)) {
+
+            // Validação paa verificar se há imagens para serem inseridas
+            if (count($arrayImagens) > 0) {
+                // Resgatando o id do último registro do Banco
+                $id = mysqli_insert_id($conexao);
+
+                // Array que vai receber o nome das imagens concatenado com o id do produto
+                $array = array();
+
+                // Formatando os elementos para script sql
+                foreach ($arrayImagens as $nome) {
+                    array_push($array, "'" . $nome . "'" . ', ' . $id);
+                }
+
+                // Variável que vai abrigar as string formatada de cada elemento
+                $string = implode('),(', $array);
+
+                // Script sql para inserir as imagens no banco
+                $sql = "INSERT INTO tbl_imagens(nome, id_produto)
+                                VALUES(" . $string . ")";
+
+                // Validação para verificar se o nome das imagens foi inserido no banco
+                if (mysqli_query($conexao, $sql))
+                    if (mysqli_affected_rows($conexao))
+                        $statusResposta = true;
+            } else
+                $statusResposta = true;
+        }
     }
 
     // Solicitando fechando de conexão com o BD
@@ -161,6 +216,8 @@ function insertProduto($dadosProduto)
 
     return $statusResposta;
 }
+
+// Função para gerar script sql para inserir as imagens
 
 // Função que apaga um registro do BD
 function deleteProduto($id)

@@ -7,11 +7,20 @@ $form = 'router.php?component=produtos&action=inserir';
 $id_categoria = 0;
 $destaque = 0;
 $fotoPrincipal = (string) null;
+$imagens = array();
+$imagemPadrao = 'assets/img/icon/upload-image.png';
 
 // Valida se a utilização de variáveis de sessão esta ativa no servidor
 if (session_status()) {
   // Valida se a variavel de sessao dadosProduto não esta vazia
   if (!empty($_SESSION['dadosProduto'])) {
+
+    
+        // echo '<pre>';
+        //     print_r($_SESSION['dadosProduto']);
+        // echo'</pre>';
+
+        // die;
 
     $id_produto    = $_SESSION['dadosProduto']['id_produto'];
     $titulo        = $_SESSION['dadosProduto']['titulo'];
@@ -22,6 +31,8 @@ if (session_status()) {
     $categoria     = $_SESSION['dadosProduto']['categoria'];
     $id_categoria  = $_SESSION['dadosProduto']['id_categoria'];
     $fotoPrincipal = $_SESSION['dadosProduto']['fotoPrincipal'];
+
+    $imagens       = $_SESSION['dadosProduto']['imagens'];
 
     $form = "router.php?component=produtos&action=editar&id=$id_produto&fotoPrincipal=$fotoPrincipal";
 
@@ -71,6 +82,25 @@ if (session_status()) {
 
     <!-- Modal -->
     <div id="modal-container">
+
+      <div class="btns">
+        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
+          <button type="submit">Excluir Imagem 1</button>
+        </form>
+
+        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
+          <button type="submit">Excluir Imagem 2</button>
+        </form>
+
+        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
+          <button type="submit">Excluir Imagem 3</button>
+        </form>
+
+        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
+          <button type="submit">Excluir Imagem 4</button>
+        </form>
+      </div>
+
       <!-- Form -->
       <form action="<?= $form ?>" method="post" enctype="multipart/form-data">
         <i class="fa-solid fa-xmark" id="closeModal" title="Fechar"></i>
@@ -80,25 +110,25 @@ if (session_status()) {
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto1" accept="image/*" id="fileFoto1" />
-                <img src="assets/img/icon/upload-image.png" alt="" id="previewFoto1" />
+                <img src="<?= isset($imagens[0][0]) ? PATH_FILE_UPLOAD . $imagens[0][0] : $imagemPadrao ?>" alt="" id="previewFoto1" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto2" accept="image/*" id="fileFoto2" />
-                <img src="assets/img/icon/upload-image.png" alt="" id="previewFoto2" />
+                <img src="<?= isset($imagens[1][0]) ? PATH_FILE_UPLOAD . $imagens[1][0] : $imagemPadrao ?>" alt="" id="previewFoto2" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto3" accept="image/*" id="fileFoto3" />
-                <img src="assets/img/icon/upload-image.png" alt="" id="previewFoto3" />
+                <img src="<?= isset($imagens[2][0]) ? PATH_FILE_UPLOAD . $imagens[2][0] : $imagemPadrao ?>" alt="" id="previewFoto3" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto4" accept="image/*" id="fileFoto4" />
-                <img src="assets/img/icon/upload-image.png" alt="" id="previewFoto4" />
+                <img src="<?= isset($imagens[3][0]) ? PATH_FILE_UPLOAD . $imagens[3][0] : $imagemPadrao ?>" alt="" id="previewFoto4" />
               </label>
             </div>
           </div>

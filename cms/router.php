@@ -404,6 +404,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 }
 
             }
+
+            // Imagens laterais
+            elseif($action == 'DELETAR-IMAGEM'){
+                echo 'teste';
+            }
             break;
         default:
             break;

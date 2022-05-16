@@ -131,6 +131,21 @@ function inserirProduto($dados)
     $dadosProduto = $dados['dados'];
     $files        = $dados['arquivos'];
 
+
+    $arrayImagens = array(
+        'imagem1' => $files['fileFoto1'],
+        'imagem2' => $files['fileFoto2'],
+        'imagem3' => $files['fileFoto3'],
+        'imagem4' => $files['fileFoto4']
+    );
+
+
+    // echo '<pre>';
+    // print_r($arrayImagens);
+    // echo '</pre>';
+
+    // die;
+
     // Validação para verificar se o objeto está vazio
     if (!empty($dadosProduto)) {
         // Validação para verificar se os itens obrigatórios no BD estão preenchidos
@@ -140,6 +155,8 @@ function inserirProduto($dados)
             require_once('modules/upload.php');
 
             $nomeFotoPrincipal = uploadFile($files['fileFotoMain']);
+
+            $nomeImagens = uploadFiles($arrayImagens);
 
             if (is_array($nomeFotoPrincipal))
                 // Caso a função retorne array, significa que houve erro no processo de upload
@@ -160,7 +177,8 @@ function inserirProduto($dados)
                 "desconto" => !empty($dadosProduto['txtDesconto']) ? $dadosProduto['txtDesconto'] : 0,
                 "destaque" => $dadosProduto['rdoDestaque'],
                 "id_categoria" => $dadosProduto['sltCategoria'],
-                "foto_principal" => $nomeFotoPrincipal
+                "foto_principal" => $nomeFotoPrincipal,
+                "imagens"        => $nomeImagens
             );
 
             //  Import da função para inserção de novo Produto
@@ -219,4 +237,9 @@ function excluirProduto($dados)
             'idErro'   => 4,
             'message'  => 'Não é possível excluir um registro sem informar um ID válido.'
         );
+}
+
+// Função para excluir uma imagem 
+function excluirImagem($id) {
+
 }

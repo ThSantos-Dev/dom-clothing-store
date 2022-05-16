@@ -92,34 +92,11 @@ function uploadFile($arrayFile)
 //  Função para realizar upload de várias imagens
 function uploadFiles($arrayFiles)
 {
-    $fileNames = array();
-
-    $total_count = count($arrayFiles['name']);
-
-    for ($i = 0; $i < $total_count; $i++) {
-        // Recupera o Tamanho do arquivo
-        $sizeFile = $arrayFiles['size'][$i];
-
-        // Recupera o Tipo do arquivo
-        $typeFile = $arrayFiles['type'][$i];
-
-        // Recupera o Nome do arquivo
-        $nameFile = $arrayFiles['name'][$i];
-
-        // Recupera o Caminho do arquivo temporário
-        $tempFile = $arrayFiles['tmp_name'][$i];
-
-        $arquivo = array(
-            "name" => $nameFile,
-            "type" => $typeFile,
-            "size" => $sizeFile,
-            "tmp_name" => $tempFile
-        );
-
-        array_push($fileNames,  uploadFile($arquivo));
+    $filesName = array();
+        
+    foreach ($arrayFiles as $file){
+        array_push($filesName,  uploadFile($file));
     }
-
-    $stringNames = implode(',' , $fileNames);
     
-    return $stringNames;
+    return $filesName;
 }
