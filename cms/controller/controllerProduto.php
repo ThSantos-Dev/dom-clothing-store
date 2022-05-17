@@ -48,10 +48,50 @@ function buscarProduto($id)
 // Função que edita um Produto
 function atualizaProduto($dados)
 {
+
+                    // Import da função de upload
+                    require_once('modules/upload.php');
+            require_once('modules/config.php');
+
+
     $id             = $dados['id'];
     $dadosProduto   = $dados['dados'];
-    $files          = $dados['arquivos'];
-    $fotoPrincipal  = $dados['fotoPrincipal'];
+    $files          = $dados['arquivos']; # Imagens que estão sendo encaminhadas pelas inputs
+    $imagensAtuais  = $dados['imagensAtuais'];
+    $fotoPrincipal  = $dados['fotoPrincipal']; # nome da foto principal
+
+    // echo '<pre>';
+    // print_r($files);
+    // echo '</pre>';
+
+    // die;
+
+    // Imagens que já estavam no BD
+    $arrayImagens = array(
+        0  => array(
+                        'nome' => $imagensAtuais['imagem1']['nome'],
+                        'id' => $imagensAtuais['imagem1']['id'],
+                    ),
+        1  => array(
+                        'nome' => $imagensAtuais['imagem2']['nome'],
+                        'id' => $imagensAtuais['imagem2']['id'],
+                    ),
+        2  => array(
+                        'nome' => $imagensAtuais['imagem3']['nome'],
+                        'id' => $imagensAtuais['imagem3']['id'],
+                    ),
+
+        3  => array(
+                        'nome' => $imagensAtuais['imagem4']['nome'],
+                        'id' => $imagensAtuais['imagem4']['id'],
+                   )
+    );
+
+    echo '<pre>';
+    print_r($arrayImagens); print_r($files);
+    echo '</pre>';
+
+    die;
 
     // Variriável de controle para verificar se a foto deverá ser atualizada ou não
     $novaFotoPrincipal = (bool) false;
@@ -61,19 +101,16 @@ function atualizaProduto($dados)
         // Validação para verificar se os itens obrigatórios no BD estão preenchidos
         // Título, preço, quantidade, categoria e foto principal
         if (!empty($dadosProduto['txtTitulo']) && !empty($dadosProduto['txtPreco']) && !empty($dadosProduto['txtQuantidade']) && !empty($dadosProduto['sltCategoria'])) {
+            
             // Validando se a foto principal foi alterada
-            if(!empty($files['fileFotoMain']['name'])) {
+            if (!empty($files['fileFotoMain']['name'])) {
                 $novaFotoPrincipal = true;
-
-                // Import da função de upload
-                require_once('modules/upload.php');
 
                 // Chama a função de upload
                 $nomeFotoPrincipal = uploadFile($files['fileFotoMain']);
 
-                if(is_array($nomeFotoPrincipal))
+                if (is_array($nomeFotoPrincipal))
                     return $nomeFotoPrincipal;
-                
             } else
                 // Permanece a mesma foto no BD
                 $nomeFotoPrincipal = $fotoPrincipal;
@@ -81,6 +118,28 @@ function atualizaProduto($dados)
             if (is_array($nomeFotoPrincipal))
                 // Caso a função retorne array, significa que houve erro no processo de upload
                 return $nomeFotoPrincipal;
+            /*  *****         ****          ***      ***         **** */
+
+            // Validando se alguma das fotos laterais foi alterada
+            $cont = 0;
+                for($i=1; $i <= 4; $i++) {
+                    if(!empty($files["fileFoto$i"]['name'])) {
+                        if(!empty($arrayImagens[$cont]['nome']))
+                            unlink(PATH_FILE_UPLOAD . $arrayImagens[$cont]['nome']);
+
+                        $arrayImagens[$cont]['nome'] = uploadFile($files["fileFoto$i"]);
+                    }
+
+                    $cont++;
+                }
+
+            echo '<pre>';
+            print_r($arrayImagens); #print_r($files);
+            echo '</pre>';
+        
+            die;
+
+
 
 
             /**
@@ -91,28 +150,27 @@ function atualizaProduto($dados)
              * OBS.: criar as chaves do Array conforme os nomes dos atributos do BD
              ****************************************************************************/
             $arrayDados = array(
-                "id"     => $id,
+                "id"     =>         $id,
                 "titulo"         => $dadosProduto['txtTitulo'],
                 "preco"          => $dadosProduto['txtPreco'],
                 "quantidade"     => $dadosProduto['txtQuantidade'],
                 "desconto"       => !empty($dadosProduto['txtDesconto']) ? $dadosProduto['txtDesconto'] : 0,
                 "destaque"       => $dadosProduto['rdoDestaque'],
                 "id_categoria"   => $dadosProduto['sltCategoria'],
-                "foto_principal" => $nomeFotoPrincipal
+                "foto_principal" => $nomeFotoPrincipal,
+                "imagens"        => $arrayImagens
             );
 
             //  Import da função para atualizar Produto
             require_once('model/bd/produto.php');
-            require_once('modules/config.php');
 
             // Chamando a função para atualizar contato no BD
-            if (updateProduto($arrayDados)){
+            if (updateProduto($arrayDados)) {
                 // Verificando se será necessário apagar a foto principal
-                if($novaFotoPrincipal)
-                    unlink(PATH_FILE_UPLOAD . $nomeFotoPrincipale);
+                if ($novaFotoPrincipal)
+                    unlink(PATH_FILE_UPLOAD . $nomeFotoPrincipal);
                 return true;
-            }
-            else
+            } else
                 return array(
                     'idErro'   => 1,
                     'message'  => 'Não foi possível inserir os dados no Banco de Dados.'
@@ -240,6 +298,6 @@ function excluirProduto($dados)
 }
 
 // Função para excluir uma imagem 
-function excluirImagem($id) {
-
+function excluirImagem($id)
+{
 }

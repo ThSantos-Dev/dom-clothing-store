@@ -95,7 +95,8 @@ function uploadFiles($arrayFiles)
     $filesName = array();
         
     foreach ($arrayFiles as $file){
-        array_push($filesName,  uploadFile($file));
+        if(!empty($file['name']))
+            array_push($filesName,  uploadFile($file));
     }
     
     return $filesName;

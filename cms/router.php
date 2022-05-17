@@ -353,7 +353,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                     'id'            => $_GET['id'],
                     'dados'         => $_POST,
                     'arquivos'      => $_FILES,
-                    'fotoPrincipal' => $_GET['fotoPrincipal']
+                    'fotoPrincipal' => $_GET['fotoPrincipal'],
+                    'imagensAtuais' => array(
+                                        'imagem1' => array(
+                                            'nome' => $_GET['imagem1'],
+                                            'id'   => $_GET['idImagem1']
+                                            ),
+                                        'imagem2' => array(
+                                            'nome' => $_GET['imagem2'],
+                                            'id'   => $_GET['idImagem2']
+                                            ),
+                                        'imagem3' => array(
+                                            'nome' => $_GET['imagem3'],
+                                            'id'   => $_GET['idImagem3']
+                                            ),
+                                        'imagem4' => array(
+                                            'nome' => $_GET['imagem4'],
+                                            'id'   => $_GET['idImagem4']
+                                            )
+                    )
                 );
 
                 $resposta = atualizaProduto($arrayDados);

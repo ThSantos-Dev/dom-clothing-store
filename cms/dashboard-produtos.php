@@ -33,8 +33,22 @@ if (session_status()) {
     $fotoPrincipal = $_SESSION['dadosProduto']['fotoPrincipal'];
 
     $imagens       = $_SESSION['dadosProduto']['imagens'];
+    
+    $imagem1 = isset($imagens[0]['nome']) ? $imagens[0]['nome'] : '';
+    $idImagem1 = isset($imagens[0]['id']) ? $imagens[0]['id'] : '';
 
-    $form = "router.php?component=produtos&action=editar&id=$id_produto&fotoPrincipal=$fotoPrincipal";
+    $imagem2 = isset($imagens[1]['nome']) ? $imagens[1]['nome'] : '';
+    $idImagem2 = isset($imagens[1]['id']) ? $imagens[1]['id'] : '';
+
+    $imagem3 = isset($imagens[2]['nome']) ? $imagens[2]['nome'] : '';
+    $idImagem3 = isset($imagens[2]['id']) ? $imagens[2]['id'] : '';
+
+    $imagem4 = isset($imagens[3]['nome']) ? $imagens[3]['nome'] : '';
+    $idImagem4 = isset($imagens[3]['id']) ? $imagens[3]['id'] : '';
+
+    // die(print_r($imagens));
+
+    $form = "router.php?component=produtos&action=editar&id=$id_produto&fotoPrincipal=$fotoPrincipal&imagem1=$imagem1&idImagem1=$idImagem1&imagem2=$imagem2&idImagem2=$idImagem2&imagem3=$imagem3&idImagem3=$idImagem1&imagem4=$imagem4&idImagem4=$idImagem4";
 
     // Destrói uma variável de sessão da memoria do servidor
     unset($_SESSION['dadosProduto']);
@@ -110,25 +124,25 @@ if (session_status()) {
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto1" accept="image/*" id="fileFoto1" />
-                <img src="<?= isset($imagens[0][0]) ? PATH_FILE_UPLOAD . $imagens[0][0] : $imagemPadrao ?>" alt="" id="previewFoto1" />
+                <img src="<?= isset($imagens[0]['nome']) ? PATH_FILE_UPLOAD . $imagens[0]['nome'] : $imagemPadrao ?>" alt="" id="previewFoto1" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto2" accept="image/*" id="fileFoto2" />
-                <img src="<?= isset($imagens[1][0]) ? PATH_FILE_UPLOAD . $imagens[1][0] : $imagemPadrao ?>" alt="" id="previewFoto2" />
+                <img src="<?= isset($imagens[1]['nome']) ? PATH_FILE_UPLOAD . $imagens[1]['nome'] : $imagemPadrao ?>" alt="" id="previewFoto2" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto3" accept="image/*" id="fileFoto3" />
-                <img src="<?= isset($imagens[2][0]) ? PATH_FILE_UPLOAD . $imagens[2][0] : $imagemPadrao ?>" alt="" id="previewFoto3" />
+                <img src="<?= isset($imagens[2]['nome']) ? PATH_FILE_UPLOAD . $imagens[2]['nome'] : $imagemPadrao ?>" alt="" id="previewFoto3" />
               </label>
             </div>
             <div class="modal-images">
               <label class="file-upload">
                 <input type="file" name="fileFoto4" accept="image/*" id="fileFoto4" />
-                <img src="<?= isset($imagens[3][0]) ? PATH_FILE_UPLOAD . $imagens[3][0] : $imagemPadrao ?>" alt="" id="previewFoto4" />
+                <img src="<?= isset($imagens[3]['nome']) ? PATH_FILE_UPLOAD . $imagens[3]['nome'] : $imagemPadrao ?>" alt="" id="previewFoto4" />
               </label>
             </div>
           </div>
@@ -215,7 +229,7 @@ if (session_status()) {
 
               <div class="form-group">
                 <label>upload imagens laterais
-                  <input type="file" multiple="multiple" accept="image/*" name="fileImages[]" id="multipleImages" />
+                  <input type="file" multiple="multiple" accept="image/*" name="" id="multipleImages" />
                 </label>
               </div>
             </div>
@@ -223,7 +237,7 @@ if (session_status()) {
 
           <!-- Button -->
           <div class="form-group-button">
-            <button value="cancelar" id="btnCancelar">cancelar</button>
+            <button value="cancelar" id="btnCancelar" onclick="return false;">cancelar</button>
             <button type="submit" value="salvar">salvar</button>
           </div>
           <!-- // Button -->

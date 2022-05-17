@@ -71,21 +71,23 @@ function selectByIdProduto($id)
                     tbl_categorias.id_categoria, tbl_categorias.nome AS nomeCategoria,
                     tbl_imagens.id_imagem, tbl_imagens.nome AS nomeImagem
                 FROM tbl_produtos
-                    INNER JOIN tbl_imagens ON tbl_imagens.id_produto = {$id} 
                     INNER JOIN tbl_categorias ON tbl_produtos.id_categoria = tbl_categorias.id_categoria
+                    INNER JOIN tbl_imagens ON tbl_imagens.id_produto = {$id} 
             WHERE tbl_produtos.id_produto = {$id};";
+
+    die($sql);
 
     // Executando o Script
     $result = mysqli_query($conexao, $sql);
     $imagens = array();
     $cont = 0;
-    
+
     if ($result) {
         while ($rsDados = mysqli_fetch_assoc($result)) {
-            $auxiliar[0] = $rsDados['nomeImagem'];
-            $auxiliar[1] = $rsDados['id_imagem'];
+            $auxiliar['nome'] = $rsDados['nomeImagem'];
+            $auxiliar['id'] = $rsDados['id_imagem'];
             $imagens[$cont] = $auxiliar;
-            
+
             $arrayDados = array(
                 'id_produto'    => $rsDados['id_produto'],
                 'titulo'        => $rsDados['titulo'],
@@ -96,19 +98,19 @@ function selectByIdProduto($id)
                 'categoria'     => $rsDados['nomeCategoria'],
                 'id_categoria'  => $rsDados['id_categoria'],
                 'fotoPrincipal' => $rsDados['foto_principal'],
-    
-                'imagens' => $imagens
+
+                'imagens' => !empty($imagens) ? $imagens : null,
             );
             $cont++;
         }
-    
-            // echo '<pre>';
-            //     print_r($arrayDados);
-            // echo'</pre>';
-    
-            // die;
-    
-        
+
+        echo '<pre>';
+            print_r($arrayDados);
+        echo'</pre>';
+
+        die;
+
+
 
         // Solicita fechamento da conexão com o BD
         fecharConexaoMySQL($conexao);
@@ -125,6 +127,63 @@ function updateProduto($dadosProduto)
 
     // Variável de controle
     $statusResposta = (bool) false;
+    $imagens        = $dadosProduto['imagens'];
+
+    // Dados teste
+    // $imagens = array(
+    //     'imagem1' => array(
+    //                 'nome' => '1169c8b910642cc6c68a63ccd4e4aa73.png',
+    //                 'id'   => 1
+    //             ),
+
+    //     'imagem2' => array(
+    //                 'nome' => '1169c8b910642cc6c68a63ccd4e4aa73.png',
+    //                 'id'   => 2
+    //             ),
+
+    //     'imagem3' => array(
+    //                 'nome' => '1169c8b910642cc6c68a63ccd4e4aa73.png',
+    //                 'id'   => 3
+    //             ),
+
+    //     'imagem4' => array(
+    //                 'nome' => '1169c8b910642cc6c68a63ccd4e4aa73.png',
+    //                 'id'   => 4
+    //             )
+    // );
+
+
+    echo '<pre>Produto.php: ';
+    print_r($imagens); #print_r($files);
+    echo '</pre>';
+
+    die;
+
+
+    foreach ($imagens as $imagem) {
+        if (!empty($imagem['id'] && $imagem['nome'])) {
+            $script = "UPDATE tbl_imagens SET
+                            nome = '" . $imagem['nome'] . "' 
+                        WHERE id_imagem = " . $imagem['id'];
+
+            echo '<pre>Produto.php: ';
+            print_r($script); #print_r($files);
+            echo '</pre>';
+
+            die;
+            mysqli_query($conexao, $script);
+        } else if (!empty($imagem['nome'])) {
+            $script = " INSERT INTO tbl_imagens(nome, id_produto)
+                            VALUES ('" . $imagem['nome'] . "', " . $dadosProduto['id'] . ")";
+
+            echo '<pre>Produto.php: ';
+            print_r($script); #print_r($files);
+            echo '</pre>';
+
+            die;
+            mysqli_query($conexao, $script);
+        }
+    }
 
     // Script SQL para excluir os dados do BD
     $sql = "UPDATE tbl_produtos SET
@@ -192,7 +251,8 @@ function insertProduto($dadosProduto)
 
                 // Formatando os elementos para script sql
                 foreach ($arrayImagens as $nome) {
-                    array_push($array, "'" . $nome . "'" . ', ' . $id);
+                    if (!empty($nome))
+                        array_push($array, "'" . $nome . "'" . ', ' . $id);
                 }
 
                 // Variável que vai abrigar as string formatada de cada elemento
