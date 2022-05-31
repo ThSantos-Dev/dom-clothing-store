@@ -18,6 +18,30 @@ USE `db_dom`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `categories_archive`
+--
+
+DROP TABLE IF EXISTS `categories_archive`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories_archive` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(150) DEFAULT NULL,
+  `remarks` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories_archive`
+--
+
+LOCK TABLES `categories_archive` WRITE;
+/*!40000 ALTER TABLE `categories_archive` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categories_archive` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_categorias`
 --
 
@@ -28,7 +52,7 @@ CREATE TABLE `tbl_categorias` (
   `id_categoria` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +61,7 @@ CREATE TABLE `tbl_categorias` (
 
 LOCK TABLES `tbl_categorias` WRITE;
 /*!40000 ALTER TABLE `tbl_categorias` DISABLE KEYS */;
-INSERT INTO `tbl_categorias` VALUES (3,'camisetas'),(6,'blusas'),(15,'avatar');
+INSERT INTO `tbl_categorias` VALUES (3,'camisetas'),(6,'blusas'),(16,'bermudas'),(17,'calças');
 /*!40000 ALTER TABLE `tbl_categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,6 +94,32 @@ INSERT INTO `tbl_contatos` VALUES (2,'mel santos','11 40028922','melsantos@gmail
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_imagens`
+--
+
+DROP TABLE IF EXISTS `tbl_imagens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_imagens` (
+  `id_imagem` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `id_produto` int NOT NULL,
+  PRIMARY KEY (`id_imagem`),
+  KEY `FK_Produtos_Imagens` (`id_produto`),
+  CONSTRAINT `FK_Produtos_Imagens` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produtos` (`id_produto`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_imagens`
+--
+
+LOCK TABLES `tbl_imagens` WRITE;
+/*!40000 ALTER TABLE `tbl_imagens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_imagens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_produtos`
 --
 
@@ -88,7 +138,7 @@ CREATE TABLE `tbl_produtos` (
   PRIMARY KEY (`id_produto`),
   KEY `FK_Categorias_Produtos` (`id_categoria`),
   CONSTRAINT `FK_Categorias_Produtos` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +147,7 @@ CREATE TABLE `tbl_produtos` (
 
 LOCK TABLES `tbl_produtos` WRITE;
 /*!40000 ALTER TABLE `tbl_produtos` DISABLE KEYS */;
-INSERT INTO `tbl_produtos` VALUES (13,'camiseta masculina jeans',32,4,0,0,'699c71edc87db4af6a24b33179bb4dfb.png',6),(14,'camisetaa verde',323,323,2,1,'d46d4a0e6be6b34030e68027d5117771.png',3),(15,'avatar',223,32,2,1,'acff81431631e0fe38067248fd754656.png',15);
+INSERT INTO `tbl_produtos` VALUES (76,'ewewe',1,3,0,0,'6083de2ced9b54b88349d358a9726e0d.png',17);
 /*!40000 ALTER TABLE `tbl_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,10 +179,6 @@ LOCK TABLES `tbl_usuarios` WRITE;
 INSERT INTO `tbl_usuarios` VALUES (1,'Thales Santos','(11)995234104','thales@gmail.com','2002-11-29','1234',NULL),(2,'thales','2332321','tales@email.com','2022-11-29','dasda sa',NULL),(3,'thales','2332321','tales@email.com','5155-10-15','5asda',NULL),(4,'thales','2332321','tales@email.com','2000-08-05','asdads ',NULL),(5,'sada a','11212','tales@email.com','2005-04-29','dsada asd','');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'db_dom'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -143,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 17:03:29
+-- Dump completed on 2022-05-30 22:55:09
