@@ -49,9 +49,9 @@ function buscarProduto($id)
 function atualizaProduto($dados)
 {
 
-                    // Import da função de upload
-                    require_once('modules/upload.php');
-            require_once('modules/config.php');
+    // Import da função de upload
+    require_once('modules/upload.php');
+    require_once('modules/config.php');
 
 
     $id             = $dados['id'];
@@ -60,6 +60,8 @@ function atualizaProduto($dados)
     $imagensAtuais  = $dados['imagensAtuais'];
     $fotoPrincipal  = $dados['fotoPrincipal']; # nome da foto principal
 
+    // die($fotoPrincipal);
+
     // echo '<pre>';
     // print_r($files);
     // echo '</pre>';
@@ -67,7 +69,7 @@ function atualizaProduto($dados)
     // die;
 
     // Imagens que já estavam no BD
-    $arrayImagens = array(
+    $arrayImagens = array(  
         0  => array(
                         'nome' => $imagensAtuais['imagem1']['nome'],
                         'id' => $imagensAtuais['imagem1']['id'],
@@ -87,11 +89,11 @@ function atualizaProduto($dados)
                    )
     );
 
-    echo '<pre>';
-    print_r($arrayImagens); print_r($files);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($arrayImagens); print_r($files);
+    // echo '</pre>';
 
-    die;
+    // die;
 
     // Variriável de controle para verificar se a foto deverá ser atualizada ou não
     $novaFotoPrincipal = (bool) false;
@@ -115,9 +117,6 @@ function atualizaProduto($dados)
                 // Permanece a mesma foto no BD
                 $nomeFotoPrincipal = $fotoPrincipal;
 
-            if (is_array($nomeFotoPrincipal))
-                // Caso a função retorne array, significa que houve erro no processo de upload
-                return $nomeFotoPrincipal;
             /*  *****         ****          ***      ***         **** */
 
             // Validando se alguma das fotos laterais foi alterada
@@ -133,11 +132,11 @@ function atualizaProduto($dados)
                     $cont++;
                 }
 
-            echo '<pre>';
-            print_r($arrayImagens); #print_r($files);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($arrayImagens); #print_r($files);
+            // echo '</pre>';
         
-            die;
+            // die;
 
 
 
@@ -168,7 +167,7 @@ function atualizaProduto($dados)
             if (updateProduto($arrayDados)) {
                 // Verificando se será necessário apagar a foto principal
                 if ($novaFotoPrincipal)
-                    unlink(PATH_FILE_UPLOAD . $nomeFotoPrincipal);
+                    unlink(PATH_FILE_UPLOAD . $fotoPrincipal);
                 return true;
             } else
                 return array(
@@ -261,11 +260,31 @@ function inserirProduto($dados)
 // Função que solicita a exclusão de um Registro no BD
 function excluirProduto($dados)
 {
+    require_once('modules/config.php');
+
     // Recebendo o id registro que será excluído do bd
     $id = $dados['id'];
 
-    // Recebendo o nome da foto principal
-    $fotoPrincipal = $dados['idFotoPrincipal'];
+    if($resposta = buscarProduto($id)) {
+
+        if($resposta['fotoPrincipal']) {
+            unlink(PATH_FILE_UPLOAD . $resposta['fotoPrincipal']);
+        }
+
+        foreach ($resposta['imagens'] as $imagem) {
+            if(unlink(PATH_FILE_UPLOAD . $imagem['nome']))
+                echo 'deu certo!';
+        }
+    }
+
+    // Recuperando as imagens
+
+    // echo "<pre>";
+    //     print_r($dados);
+    // echo "</pre>";
+    // die;
+    
+    // 
 
     // Validando o ID 
     if (!empty($id) && is_numeric($id) && $id > 0) {
@@ -276,8 +295,15 @@ function excluirProduto($dados)
         if (deleteProduto($id)) {
             // Validando se a variável foto possuí conteúdo 
             if ($fotoPrincipal != null) {
-                if (unlink(PATH_FILE_UPLOAD . $fotoPrincipal))
+                if (unlink(PATH_FILE_UPLOAD . $fotoPrincipal)){
+                    foreach ($imagensAtuais as $imagem) {
+                        if(!empty($imagem['nome']))
+                            unlink(PATH_FILE_UPLOAD . $imagem['nome']);
+
+                    }
+
                     return true;
+                }
                 else
                     return array(
                         'idErro'   => 5,
@@ -297,7 +323,3 @@ function excluirProduto($dados)
         );
 }
 
-// Função para excluir uma imagem 
-function excluirImagem($id)
-{
-}

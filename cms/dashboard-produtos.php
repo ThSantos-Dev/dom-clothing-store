@@ -6,6 +6,9 @@ $form = 'router.php?component=produtos&action=inserir';
 
 $id_categoria = 0;
 $destaque = 0;
+$preco = (double) 0.0;
+$desconto = (double) 0.0;
+$quantidade = (int) 0;
 $fotoPrincipal = (string) null;
 $imagens = array();
 $imagemPadrao = 'assets/img/icon/upload-image.png';
@@ -96,25 +99,6 @@ if (session_status()) {
 
     <!-- Modal -->
     <div id="modal-container">
-
-      <div class="btns">
-        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
-          <button type="submit">Excluir Imagem 1</button>
-        </form>
-
-        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
-          <button type="submit">Excluir Imagem 2</button>
-        </form>
-
-        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
-          <button type="submit">Excluir Imagem 3</button>
-        </form>
-
-        <form class="btn-excluir-imagem" method="post" action="router.php?component=produtos&action=deletar-imagem&id=">
-          <button type="submit">Excluir Imagem 4</button>
-        </form>
-      </div>
-
       <!-- Form -->
       <form action="<?= $form ?>" method="post" enctype="multipart/form-data">
         <i class="fa-solid fa-xmark" id="closeModal" title="Fechar"></i>
@@ -190,7 +174,7 @@ if (session_status()) {
                   // Imprimendo na tela todas as categorias
                   foreach ($listCategorias as $item) {
                 ?>  
-                  <option value="<?= $item['id_categoria']?>" <?= $item['id_categoria'] == $id_categoria ? 'selected' : null ?>><?= $item['nome']?></option>
+                  <option value="<?= $item['id']?>" <?= $item['id'] == $id_categoria ? 'selected' : null ?>><?= $item['nome']?></option>
                 <?php
                   }
                 }
@@ -217,20 +201,6 @@ if (session_status()) {
                   <input type="radio" name="rdoDestaque" value="0" id="rdoDestaqueNao" <?= $destaque == 0 ? "checked" : null ?>>
                   <label for="rdoDestaqueNao">Não</label>
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group file-upload">
-              <div class="form-group">
-                <label>upload imagem principal
-                  <input type="file" accept="image/*" name="" id="singleImage" />
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label>upload imagens laterais
-                  <input type="file" multiple="multiple" accept="image/*" name="" id="multipleImages" />
-                </label>
               </div>
             </div>
           </div>

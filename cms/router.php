@@ -397,8 +397,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
             elseif($action == 'DELETAR') {
                 // Recebendo id do produto e nome da foto 
                 $arrayDados = array(
-                    'id' => $_GET['id'],
-                    'idFotoPrincipal' => $_GET['idFotoPrincipal']
+                    'id'            => $_GET['id'],
                 );
 
                 // Chama a função de excluir da controller

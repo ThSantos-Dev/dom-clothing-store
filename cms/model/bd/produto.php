@@ -72,10 +72,10 @@ function selectByIdProduto($id)
                     tbl_imagens.id_imagem, tbl_imagens.nome AS nomeImagem
                 FROM tbl_produtos
                     INNER JOIN tbl_categorias ON tbl_produtos.id_categoria = tbl_categorias.id_categoria
-                    INNER JOIN tbl_imagens ON tbl_imagens.id_produto = {$id} 
+                    LEFT JOIN tbl_imagens ON tbl_imagens.id_produto = {$id} 
             WHERE tbl_produtos.id_produto = {$id};";
 
-    die($sql);
+    // die($sql);
 
     // Executando o Script
     $result = mysqli_query($conexao, $sql);
@@ -104,11 +104,12 @@ function selectByIdProduto($id)
             $cont++;
         }
 
-        echo '<pre>';
-            print_r($arrayDados);
-        echo'</pre>';
+        // echo '<pre>';
+        //     print_r($arrayDados);
+        // echo'</pre>';
 
-        die;
+        // die;
+
 
 
 
@@ -153,11 +154,11 @@ function updateProduto($dadosProduto)
     // );
 
 
-    echo '<pre>Produto.php: ';
-    print_r($imagens); #print_r($files);
-    echo '</pre>';
+    // echo '<pre>Produto.php: ';
+    // print_r($imagens); #print_r($files);
+    // echo '</pre>';
 
-    die;
+    // die;
 
 
     foreach ($imagens as $imagem) {
@@ -166,22 +167,25 @@ function updateProduto($dadosProduto)
                             nome = '" . $imagem['nome'] . "' 
                         WHERE id_imagem = " . $imagem['id'];
 
-            echo '<pre>Produto.php: ';
-            print_r($script); #print_r($files);
-            echo '</pre>';
+            // echo '<pre>Produto.php: ';
+            // print_r($script); #print_r($files);
+            // echo '</pre>';
 
-            die;
+            // die;
             mysqli_query($conexao, $script);
+            $statusResposta = true;
         } else if (!empty($imagem['nome'])) {
             $script = " INSERT INTO tbl_imagens(nome, id_produto)
                             VALUES ('" . $imagem['nome'] . "', " . $dadosProduto['id'] . ")";
 
-            echo '<pre>Produto.php: ';
-            print_r($script); #print_r($files);
-            echo '</pre>';
+            // echo '<pre>Produto.php: ';
+            // print_r($script); #print_r($files);
+            // echo '</pre>';
 
-            die;
+            // die;
             mysqli_query($conexao, $script);
+            $statusResposta = true;
+
         }
     }
 

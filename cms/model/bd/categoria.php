@@ -41,7 +41,9 @@ function selectAllCategorias() {
     $conexao = conexaoMySQL();
 
     // Script SQL para listar todas as categorias
-    $sql = "select * from tbl_categorias order by nome asc";
+    $sql = "select id_categoria as id, nome 
+                from tbl_categorias 
+                    order by nome asc";
 
     // Executando Script no BD
     $result = mysqli_query($conexao, $sql);
@@ -56,8 +58,8 @@ function selectAllCategorias() {
             if ($rsDados) {
                 // Cria um array com os dados do BD
                 $arrayDados[$cont] = array(
-                    "id_categoria"          => $rsDados['id_categoria'],
-                    "nome"                  => $rsDados['nome'],
+                    "id"          => $rsDados['id'],
+                    "nome"        => $rsDados['nome'],
                 );
 
                 $cont++;
